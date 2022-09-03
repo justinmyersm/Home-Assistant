@@ -1,167 +1,339 @@
 type: custom:stack-in-card
 cards:
-  - type: custom:mushroom-title-card
-    title: Bedroom
-    alignment: center
-  - type: vertical-stack
-    cards:
-      - square: false
-        columns: 6
-        type: grid
-        cards:
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            show_icon: true
-            show_name: false
-            icon: mdi:chevron-right
-            size: 100%
-            layout: vertical
-            color_type: card
-            color: rgba(245,66,158,.6);
-            styles:
-              card:
-                - height: 40px
-            tap_action:
-              action: navigate
-              navigation_path: /lovelace-bedroom/
-      - type: entities
-        state_color: false
+  - type: entities
+    entities:
+      - type: custom:fold-entity-row
+        padding: 0
+        head:
+          type: custom:stack-in-card
+          cards:
+            - type: custom:stack-in-card
+              cards:
+                - type: custom:mushroom-title-card
+                  title: Backroom
+                  alignment: center
+              card_mod:
+                style: |
+                  ha-card {
+                    background: none;
+                    box-shadow: none;
+                    text-align: center;
+                    margin-top: -1.3em;
+                    margin-bottom: -1.3em;
+                  }
+            - type: custom:paper-buttons-row
+              styles:
+                '--paper-item-icon-color': white
+                '--paper-item-icon-active-color': yellow
+              buttons:
+                - entity: sensor.temperature_backroom
+                  name: false
+                  layout: icon_name|state
+                  state:
+                    postfix: °F
+                  icon: mdi:thermometer
+                - entity: sensor.illuminance_backroom_pir_sensor
+                  name: false
+                  layout: icon_name|state
+                  state:
+                    postfix: lx
+                  icon: mdi:brightness-5
+            - type: custom:paper-buttons-row
+              styles:
+                '--paper-item-icon-color': white
+                '--paper-item-icon-active-color': yellow
+              buttons:
+                - entity: light.backroom_lights
+                  name: false
+                  layout: icon_state
+                  state_icons:
+                    'on': phu:ceiling-flourish
+                    'off': phu:ceiling-flourish
+                  state_text:
+                    'on': 'On'
+                    'off': 'Off'
+                  state_styles:
+                    'on':
+                      button:
+                        animation: blink 1s ease infinite
+                      icon:
+                        color: var(--paper-item-icon-active-color)
+                - entity: binary_sensor.motion_backroom_pir_sensor
+                  name: false
+                  layout: icon_state
+                  state_icons:
+                    'on': mdi:motion-sensor
+                    'off': mdi:motion-sensor-off
+                  state_text:
+                    'on': Motion
+                    'off': Clear
+                  state_styles:
+                    'on':
+                      button:
+                        animation: blink 1s ease infinite
+                      icon:
+                        color: var(--paper-item-icon-active-color)
+                - entity: binary_sensor.backdoor_inside
+                  name: false
+                  layout: icon_state
+                  state_icons:
+                    'on': phu:panel-glass-door3-open
+                    'off': phu:panel-glass-door3-close
+                  state_text:
+                    'on': Open
+                    'off': Closed
+                  state_styles:
+                    'on':
+                      button:
+                        animation: blink 1s ease infinite
+                      icon:
+                        color: var(--paper-item-icon-active-color)
+                - entity: binary_sensor.backdoor_outside
+                  name: false
+                  layout: icon_state
+                  state_icons:
+                    'on': phu:panel-glass-door3-open
+                    'off': phu:panel-glass-door3-close
+                  state_text:
+                    'on': Open
+                    'off': Closed
+                  state_styles:
+                    'on':
+                      button:
+                        animation: blink 1s ease infinite
+                      icon:
+                        color: var(--paper-item-icon-active-color)
+                - entity: binary_sensor.cat_food
+                  name: false
+                  layout: icon_state
+                  state_icons:
+                    'on': mdi:cat
+                    'off': mdi:cat
+                  state_text:
+                    'on': Open
+                    'off': Closed
+                  state_styles:
+                    'on':
+                      button:
+                        animation: blink 1s ease infinite
+                      icon:
+                        color: var(--paper-item-icon-active-color)
+          card_mod:
+            style: |
+              ha-card {
+                background: none;
+                box-shadow: none;
+                margin: -10px;
+              }
         entities:
-          - type: divider
-      - type: vertical-stack
-        cards:
-          - square: false
-            columns: 2
-            type: grid
+          - type: custom:stack-in-card
             cards:
-              - type: custom:button-card
-                entity: sensor.temperature_bedroom
-                show_icon: false
-                show_name: true
-                name: Temperature
-                show_state: true
-                size: 100%
-                layout: vertical
-                color_type: card
-                color: rgba(245,66,158,.6);
-                styles:
-                  card:
-                    - height: 40px
-                tap_action:
-                  action: more-info
-              - type: custom:button-card
-                entity: sensor.humidity_bedroom
-                show_icon: false
-                show_name: true
-                name: Humidity
-                show_state: true
-                size: 100%
-                layout: vertical
-                color_type: card
-                color: rgba(245,66,158,.6);
-                styles:
-                  card:
-                    - height: 40px
-                tap_action:
-                  action: more-info
-  - type: vertical-stack
-    cards:
-      - type: entities
-        state_color: false
-        entities:
-          - type: divider
-          - entity: light.bedroom_light
-          - entity: switch.closet_light
-          - entity: switch.bedroom_ac
-            toggle: true
-            type: custom:multiple-entity-row
-            entities:
-              - entity: sensor.ac_bedroom_usage
-                name: false
-          - entity: switch.vornado_mac
-          - entity: switch.duct_fan
-          - entity: switch.noise_maker
-          - type: divider
-          - type: custom:mini-media-player
-            entity: media_player.bedroom_assistant
-            color: rgba(245,66,158,.6);
-            volume_stateless: true
-            group: true
-            artwork: material
-            toggle_power: false
-            shortcuts:
-              columns: 3
-              buttons:
-                - name: Set Volume (85)
-                  type: script
-                  id: script.bedroom_assistant_set_volume
-                - name: White Noise
-                  type: script
-                  id: script.bedroom_white_noise
-          - type: custom:mini-media-player
-            entity: media_player.bose_speakers
-            color: rgba(245,66,158,.6);
-            volume_stateless: true
-            group: true
-            artwork: material
-            toggle_power: false
-            shortcuts:
-              columns: 3
-              buttons: null
-          - type: custom:mini-media-player
-            entity: media_player.sony_bravia_tv
-            color: rgba(245,66,158,.6);
-            volume_stateless: true
-            group: true
-            artwork: material
-            info: scroll
-            toggle_power: false
-            shortcuts:
-              columns: 2
-              buttons: null
-          - type: custom:mini-media-player
-            entity: media_player.tv
-            color: rgba(245,66,158,.6);
-            volume_stateless: true
-            group: true
-            artwork: material
-            info: scroll
-            toggle_power: false
-            shortcuts:
-              columns: 2
-              buttons:
-                - name: Set Volume (20)
-                  type: script
-                  id: script.bedroom_tv_set_volume_20
-                - name: White Noise
-                  type: script
-                  id: script.bedroom_tv_white_noise_start
-                - name: Restart (7 Sec)
-                  type: script
-                  id: script.bedroom_tv_video_restart
-                - name: Toggle Picture
-                  type: script
-                  id: script.bedroom_tv_picture_off
-                - name: Power
-                  type: script
-                  id: script.bedroom_tv_power
-                - name: Netflix
-                  type: script
-                  id: script.bedroom_tv_netflix
+              - type: entities
+                entities:
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head: light.backroom_lights
+                    entities:
+                      - type: custom:slider-entity-row
+                        entity: light.backroom_light_1
+                      - type: custom:slider-entity-row
+                        entity: light.backroom_light_2
+                  - entity: binary_sensor.backdoor_inside
+                  - entity: binary_sensor.backdoor_outside
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: binary_sensor.cat_food
+                    padding: 0
+                    entities:
+                      - type: custom:button-card
+                        entity: input_boolean.cats_fed
+                        styles:
+                          grid:
+                            - grid-template-areas: '"cats_fed"'
+                            - grid-template-columns: 1fr
+                            - grid-template-rows: 1fr
+                            - height: 30px
+                            - position: relative
+                            - top: '-1.6em'
+                        show_icon: false
+                        show_name: false
+                        size: 30px
+                        color_type: card
+                        color: auto
+                        custom_fields:
+                          cats_fed:
+                            card:
+                              type: custom:logbook-card
+                              style: |
+                                ha-card {
+                                  font-size: .9em;
+                                  text-align: center;
+                                  background: rgba(0,0,0,0);
+                                }
+                              desc: true
+                              no_event: FEED THE CATS!
+                              entity: binary_sensor.cat_food
+                              title: false
+                              state_map:
+                                - label: Cats Fed
+                                  value: 'on'
+                                - label: Closed
+                                  value: 'off'
+                              show:
+                                end_date: false
+                                start_date: true
+                                duration: false
+                                icon: false
+                                separator: true
+                              hiddenState:
+                                - 'off'
+                                - unavailable
+                              duration: false
+                              value_template: >-
+                                {{ now().timestamp() | timestamp_custom('%a
+                                %d-%m-%Y %-I:%M %p') }}
+                              collapse: 1
+                              max_items: 1
+                              history: 1
+                        state:
+                          - value: 'on'
+                            color: '#128F00'
+                          - value: 'off'
+                            color: '#880808'
+                            animation: blink 2s ease infinite
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: binary_sensor.litter_box_threshold
+                      name: Litter Box
+                    padding: 0
+                    entities:
+                      - type: custom:button-card
+                        entity: input_boolean.litter_box
+                        styles:
+                          grid:
+                            - grid-template-areas: '"magic_potty"'
+                            - grid-template-columns: 1fr
+                            - grid-template-rows: 1fr
+                            - height: 30px
+                            - position: relative
+                            - top: '-1.6em'
+                        show_icon: false
+                        show_name: false
+                        size: 30px
+                        color_type: card
+                        color: auto
+                        custom_fields:
+                          magic_potty:
+                            card:
+                              type: custom:logbook-card
+                              style: |
+                                ha-card {
+                                  font-size: .9em;
+                                  text-align: center;
+                                  background: rgba(0,0,0,0);
+                                }
+                              desc: true
+                              no_event: More than 4hrs
+                              entity: input_boolean.litter_box
+                              title: false
+                              state_map:
+                                - label: Went Potty
+                                  value: 'on'
+                                - label: More than 4hrs
+                                  value: 'off'
+                              show:
+                                end_date: false
+                                start_date: true
+                                duration: false
+                                icon: false
+                                separator: true
+                              hiddenState:
+                                - 'off'
+                                - unavailable
+                              duration: false
+                              value_template: >-
+                                {{ now().timestamp() | timestamp_custom('%a
+                                %d-%m-%Y %-I:%M %p') }}
+                              collapse: 1
+                              max_items: 1
+                              history: 1
+                        state:
+                          - value: 'on'
+                            color: '#128F00'
+                          - value: 'off'
+                            color: '#880808'
+                            animation: blink 2s ease infinite
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: camera.backdoor_cam
+                      name: Backdoor Cam
+                    padding: 0
+                    entities:
+                      - type: custom:stack-in-card
+                        mode: vertical
+                        cards:
+                          - type: entities
+                            state_color: false
+                            entities:
+                              - type: divider
+                                style:
+                                  height: 10px
+                                  background: rgba(102, 102, 102, 0);
+                          - type: picture-entity
+                            show_state: false
+                            show_name: false
+                            camera_view: live
+                            entity: camera.backdoor_cam
+                            name: Backdoor Cam
+                            camera_image: camera.backdoor_cam
+                          - type: entities
+                            state_color: false
+                            entities:
+                              - type: divider
+                                style:
+                                  height: 0px
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: none;
+                              box-shadow: none;
+                            }
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: none;
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  width: 110%;
+                  margin-left: -1.5em;
+                }
+        card_mod:
+          style: |
+            #head {
+              margin-left: 32px;
+              }
+            ha-icon {
+              display: none; !important
+            }
+    card_mod:
+      style: |
+        ha-card {
+          background: none;
+          box-shadow: none;
+        }
 card_mod:
   style: |
     ha-card {
-      background: rgba(245,66,158,.3);
+      background: rgba(102, 102, 102, .6);
       box-shadow: none;
-      color: white;
-      --card-mod-icon-color: white;
     }
