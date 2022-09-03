@@ -1,220 +1,244 @@
 type: custom:stack-in-card
 cards:
-  - type: entities
-    entities:
-      - type: custom:fold-entity-row
-        padding: 0
-        head:
-          type: custom:stack-in-card
-          cards:
-            - type: custom:stack-in-card
-              cards:
-                - type: custom:mushroom-title-card
-                  title: Bathroom
-                  alignment: center
-              card_mod:
-                style: |
-                  ha-card {
-                    background: none;
-                    box-shadow: none;
-                    text-align: center;
-                    margin-top: -1.3em;
-                    margin-bottom: -1.3em;
-                  }
-            - type: custom:paper-buttons-row
-              styles:
-                '--paper-item-icon-color': white
-                '--paper-item-icon-active-color': yellow
-              buttons:
-                - entity: sensor.temperature_bathroom
-                  name: false
-                  layout: icon_name|state
-                  state:
-                    postfix: °F
-                  icon: mdi:thermometer
-                - entity: sensor.humidity_bathroom
-                  name: false
-                  layout: icon_name|state
-                  state:
-                    postfix: '%'
-                  icon: mdi:water-percent
-            - type: custom:paper-buttons-row
-              styles:
-                '--paper-item-icon-color': white
-                '--paper-item-icon-active-color': yellow
-              buttons:
-                - entity: climate.bathroom_heater
-                  name: false
-                  layout: icon_state
-                  state_icons:
-                    heat: mdi:thermostat
-                    'off': mdi:thermostat
-                  state_text:
-                    heat: Heat
-                    'off': 'Off'
-                  state_styles:
-                    heat:
-                      button:
-                        animation: blink 1s ease infinite
-                        color: var(--paper-item-icon-active-color)
-                - entity: switch.bathroom_space_heater
-                  name: false
-                  layout: icon_state
-                  state_icons:
-                    'on': mdi:radiator
-                    'off': mdi:radiator-off
-                  state_text:
-                    'on': 'On'
-                    'off': 'Off'
-                  state_styles:
-                    'on':
-                      button:
-                        animation: blink 1s ease infinite
-                      icon:
-                        color: var(--paper-item-icon-active-color)
-          card_mod:
-            style: |
-              ha-card {
-                background: none;
-                box-shadow: none;
-                margin: -10px;
-              }
-        entities:
-          - type: custom:stack-in-card
-            cards:
-              - type: entities
-                entities:
-                  - type: divider
-                  - type: custom:stack-in-card
-                    card_mod:
-                      style: |
-                        ha-card {
-                          background: rgba(0,0,0,.0);
-                          box-shadow: none;
-                          color: white;
-                          --card-mod-icon-color: white;
-                        }
-                    cards:
-                      - type: conditional
-                        conditions:
-                          - entity: switch.bathroom_space_heater
-                            state: 'on'
-                        card:
-                          type: custom:simple-thermostat
-                          entity: climate.bathroom_heater
-                          label:
-                            temperature: Bathroom
-                            state: Mode
-                          sensors:
-                            - entity: sensor.temperature_inside
-                              name: Inside
-                          header:
-                            name: false
-                            icon: false
-                          fallback: 'Off'
-                          layout:
-                            step: column
-                            mode:
-                              headings: false
-                          step_size: 1
-                          style: |
-                            ha-card {
-                              --st-font-size-xl: 1em;
-                              --st-font-size-m: 1em;
-                              --st-font-size-title: 1.25em;
-                              --st-font-size-sensors: 1em;
-                              --st-spacing: 0.1em;
-                              background: rgba(179,149,255,0);
-                            }
-                      - type: conditional
-                        conditions:
-                          - entity: switch.bathroom_space_heater
-                            state: 'on'
-                          - entity: climate.bathroom_heater
-                            state: 'off'
-                        card:
-                          type: custom:timer-bar-card
-                          entity: timer.space_heater_timer
-                          layout: full_row
-                          bar_foreground: '#ffffff'
-                          bar_background: rgba(179,149,255,.6);
-                          bar_radius: 4px
-                          invert: true
-                          bar_direction: rtl
-                          tap_action:
-                            action: call-service
-                            service: switch.turn_off
-                            data: {}
-                            target:
-                              entity_id: switch.bathroom_space_heater
-                          card_mod:
-                            style: |
-                              ha-card {
-                                background: none;
-                                box-shadow: none;
-                              }
-                  - entity: switch.bathroom_space_heater
-                    toggle: true
-                    type: custom:multiple-entity-row
-                    entities:
-                      - entity: sensor.heat_5_usage
-                        name: false
-                  - entity: binary_sensor.bathroom_hair_curler
-                  - type: divider
-                  - type: custom:mini-media-player
-                    entity: media_player.bathroom_home_mini
-                    color: rgba(179,149,255,.6);
-                    volume_stateless: true
-                    group: true
-                    artwork: material
-                    toggle_power: false
-                    shortcuts:
-                      columns: 3
-                      buttons:
-                        - name: My Mix 1
-                          type: script
-                          id: script.youtube_music_my_mix_1_bathroom
-                        - name: Big Mix 7
-                          type: script
-                          id: script.youtube_music_big_mix_7_bathroom
-                        - name: My Likes
-                          type: script
-                          id: script.youtube_music_likes_bathroom
-                          card_mod:
-                            style: |
-                              ha-card {
-                                background: none;
-                                box-shadow: none;
-                              }
-                card_mod:
-                  style: |
-                    ha-card {
-                      background: none;
-                      box-shadow: none;
-                      color: white;
-                      --card-mod-icon-color: white;
-                    }
-            card_mod:
-              style: |
-                ha-card {
-                  background: none;
-                  box-shadow: none;
-                  width: 110%;
-                  margin-left: -1.5em;
-                }
-        card_mod:
-          style: |
-            #head {
-              margin-left: 32px;
-              }
-            ha-icon {
-              display: none; !important
-            }
+  - type: custom:stack-in-card
+    cards:
+      - type: custom:mushroom-title-card
+        title: Bathroom
+        alignment: center
     card_mod:
       style: |
         ha-card {
           background: none;
           box-shadow: none;
+          margin-top: -1em;
+          margin-bottom: -1em;
+        }
+  - type: custom:stack-in-card
+    cards:
+      - type: entities
+        entities:
+          - type: custom:paper-buttons-row
+            styles:
+              '--paper-item-icon-color': white
+              '--paper-item-icon-active-color': yellow
+            buttons:
+              - entity: sensor.temperature_bathroom
+                name: false
+                layout: icon_name|state
+                state:
+                  postfix: °F
+                icon: mdi:thermometer
+              - entity: sensor.humidity_bathroom
+                name: false
+                layout: icon_name|state
+                state:
+                  postfix: '%'
+                icon: mdi:water-percent
+    card_mod:
+      style: |
+        ha-card {
+          background: none;
+          box-shadow: none;
+          margin-top: -1em;
+          margin-bottom: -1em;
+        }
+  - type: custom:stack-in-card
+    cards:
+      - type: entities
+        entities:
+          - type: custom:paper-buttons-row
+            styles:
+              '--paper-item-icon-color': white
+              '--paper-item-icon-active-color': yellow
+            buttons:
+              - entity: climate.bathroom_heater
+                name: false
+                layout: icon_state
+                state_icons:
+                  heat: mdi:thermostat
+                  'off': mdi:thermostat
+                state_text:
+                  heat: Heat
+                  'off': 'Off'
+                state_styles:
+                  heat:
+                    button:
+                      animation: blink 1s ease infinite
+                      color: var(--paper-item-icon-active-color)
+              - entity: switch.bathroom_space_heater
+                name: false
+                layout: icon_state
+                state_icons:
+                  'on': mdi:radiator
+                  'off': mdi:radiator-off
+                state_text:
+                  'on': 'On'
+                  'off': 'Off'
+                state_styles:
+                  'on':
+                    button:
+                      animation: blink 1s ease infinite
+                    icon:
+                      color: var(--paper-item-icon-active-color)
+          - type: custom:fold-entity-row
+            padding: 0
+            head:
+              type: custom:stack-in-card
+              cards:
+                - square: false
+                  columns: 1
+                  type: grid
+                  cards:
+                    - type: custom:button-card
+                      color_type: blank-card
+                      styles:
+                        card:
+                          - height: 40px
+              card_mod:
+                style: |
+                  ha-card {
+                    background: rgba(179,149,255,.6);
+                    box-shadow: none;
+                  }
+            entities:
+              - type: custom:stack-in-card
+                cards:
+                  - type: entities
+                    entities:
+                      - type: divider
+                      - type: custom:stack-in-card
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: rgba(0,0,0,.0);
+                              box-shadow: none;
+                              color: white;
+                              --card-mod-icon-color: white;
+                            }
+                        cards:
+                          - type: conditional
+                            conditions:
+                              - entity: switch.bathroom_space_heater
+                                state: 'on'
+                            card:
+                              type: custom:simple-thermostat
+                              entity: climate.bathroom_heater
+                              label:
+                                temperature: Bathroom
+                                state: Mode
+                              sensors:
+                                - entity: sensor.temperature_inside
+                                  name: Inside
+                              header:
+                                name: false
+                                icon: false
+                              fallback: 'Off'
+                              layout:
+                                step: column
+                                mode:
+                                  headings: false
+                              step_size: 1
+                              style: |
+                                ha-card {
+                                  --st-font-size-xl: 1em;
+                                  --st-font-size-m: 1em;
+                                  --st-font-size-title: 1.25em;
+                                  --st-font-size-sensors: 1em;
+                                  --st-spacing: 0.1em;
+                                  background: rgba(179,149,255,0);
+                                }
+                          - type: conditional
+                            conditions:
+                              - entity: switch.bathroom_space_heater
+                                state: 'on'
+                              - entity: climate.bathroom_heater
+                                state: 'off'
+                            card:
+                              type: custom:timer-bar-card
+                              entity: timer.space_heater_timer
+                              layout: full_row
+                              bar_foreground: '#ffffff'
+                              bar_background: rgba(179,149,255,.6);
+                              bar_radius: 4px
+                              invert: true
+                              bar_direction: rtl
+                              tap_action:
+                                action: call-service
+                                service: switch.turn_off
+                                data: {}
+                                target:
+                                  entity_id: switch.bathroom_space_heater
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                    background: none;
+                                    box-shadow: none;
+                                  }
+                      - entity: switch.bathroom_space_heater
+                        toggle: true
+                        type: custom:multiple-entity-row
+                        entities:
+                          - entity: sensor.heat_5_usage
+                            name: false
+                      - entity: binary_sensor.bathroom_hair_curler
+                      - type: divider
+                      - type: custom:mini-media-player
+                        entity: media_player.bathroom_home_mini
+                        color: rgba(179,149,255,.6);
+                        volume_stateless: true
+                        group: true
+                        artwork: material
+                        toggle_power: false
+                        shortcuts:
+                          columns: 3
+                          buttons:
+                            - name: My Mix 1
+                              type: script
+                              id: script.youtube_music_my_mix_1_bathroom
+                            - name: Big Mix 7
+                              type: script
+                              id: script.youtube_music_big_mix_7_bathroom
+                            - name: My Likes
+                              type: script
+                              id: script.youtube_music_likes_bathroom
+                              card_mod:
+                                style: |
+                                  ha-card {
+                                    background: none;
+                                    box-shadow: none;
+                                  }
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background: none;
+                          box-shadow: none;
+                          color: white;
+                          --card-mod-icon-color: white;
+                        }
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: none;
+                      box-shadow: none;
+                      width: 96%;
+                      margin-left: .65em;
+                    }
+            card_mod:
+              style: |
+                #head {
+                  margin-left: 32px;
+                  }
+                ha-icon {
+                  display: none; !important
+                }
+    card_mod:
+      style: |
+        ha-card {
+          background: none;
+          box-shadow: none;
+          width: 110%;
+          margin-left: -1.5em;
+          margin-top: -1em;
         }
 card_mod:
   style: |
