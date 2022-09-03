@@ -414,6 +414,9 @@ cards:
                                   background: none;
                                   box-shadow: none;
                                 }
+
+                      - type: custom:gap-card
+                        height: 15
                       - type: custom:stack-in-card
                         cards:
                           - type: custom:button-card
@@ -422,13 +425,10 @@ cards:
                             name: View Room
                             icon: mdi:chevron-right
                             size: 100%
-                            color_type: card
-                            color: rgba(102, 102, 102, .6);
                             styles:
                               card:
                                 - height: 40px
                                 - font-size: 1.1em
-                                - position: relative 
                             tap_action:
                               action: navigate
                               navigation_path: /lovelace-backroom/
