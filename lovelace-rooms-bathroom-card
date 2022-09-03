@@ -80,6 +80,18 @@ cards:
                       animation: blink 1s ease infinite
                     icon:
                       color: var(--paper-item-icon-active-color)
+    card_mod:
+      style: |
+        ha-card {
+          background: none;
+          box-shadow: none;
+          margin-top: -1em;
+          margin-bottom: -1em;
+        }
+  - type: custom:stack-in-card
+    cards:
+      - type: entities
+        entities:
           - type: custom:fold-entity-row
             padding: 0
             head:
@@ -207,40 +219,35 @@ cards:
                                     background: none;
                                     box-shadow: none;
                                   }
+                      - type: custom:gap-card
+                        height: 15
                       - type: custom:stack-in-card
                         cards:
-                          - square: false
-                            columns: 2
-                            type: grid
-                            cards:
-                              - type: custom:button-card
-                                color_type: blank-card
-                              - type: custom:button-card
-                                color_type: blank-card
-                              - type: custom:button-card
-                                color_type: blank-card
-                              - type: custom:button-card
-                                show_icon: false
-                                show_name: true
-                                name: View Room
-                                icon: mdi:chevron-right
-                                size: 100%
-                                styles:
-                                  card:
-                                    - height: 40px
-                                tap_action:
-                                  action: navigate
-                                  navigation_path: /lovelace-bathroom/
-                                card_mod:
-                                  style: |
-                                    ha-card {
-                                      background: none;
-                                      box-shadow: none;
-                                    }
+                          - type: custom:button-card
+                            show_icon: false
+                            show_name: true
+                            name: View Room
+                            icon: mdi:chevron-right
+                            size: 100%
+                            color_type: card
+                            color: rgba(102, 102, 102, .6);
+                            styles:
+                              card:
+                                - height: 40px
+                                - font-size: 1.1em
+                            tap_action:
+                              action: navigate
+                              navigation_path: /lovelace-bathroom/
+                            card_mod:
+                              style: |
+                                ha-card {
+                                  background: none;
+                                  box-shadow: none;
+                                }
                         card_mod:
                           style: |
                             ha-card {
-                              background: none;
+                              background: rgba(179,149,255,.3);
                               box-shadow: none;
                             }
                     card_mod:
