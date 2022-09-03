@@ -49,7 +49,15 @@ cards:
           - type: custom:paper-buttons-row
             styles:
               '--paper-item-icon-color': white
-              '--paper-item-icon-active-color': yellow
+            extra_styles: |
+              @keyframes custom-active {
+                from   {
+                --paper-item-icon-active-color: white;
+                }
+                to {
+                --paper-item-icon-active-color: #ffff00;
+                }
+              }
             buttons:
               - entity: climate.bathroom_heater
                 name: false
