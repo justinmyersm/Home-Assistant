@@ -424,17 +424,11 @@ cards:
                             size: 100%
                             color_type: card
                             color: rgba(102, 102, 102, .6);
-                            extra_styles: |
-                              @keyframes example {
-                                from {background-color: rgba(102, 102, 102, 0);}
-                                to {background-color: rgba(102, 102, 102, 1);}
-                              }
                             styles:
                               card:
                                 - height: 40px
                                 - font-size: 1.1em
-                                - position: relative
-                                - animation: example 5s linear 2s infinite alternate
+                                - position: relative 
                             tap_action:
                               action: navigate
                               navigation_path: /lovelace-backroom/
