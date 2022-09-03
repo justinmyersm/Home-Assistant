@@ -97,7 +97,7 @@ cards:
               card_mod:
                 style: |
                   ha-card {
-                    background: rgba(179,149,255,.6);
+                    background: rgba(179,149,255,.3);
                     box-shadow: none;
                   }
             entities:
@@ -207,6 +207,42 @@ cards:
                                     background: none;
                                     box-shadow: none;
                                   }
+                      - type: custom:stack-in-card
+                        cards:
+                          - square: false
+                            columns: 2
+                            type: grid
+                            cards:
+                              - type: custom:button-card
+                                color_type: blank-card
+                              - type: custom:button-card
+                                color_type: blank-card
+                              - type: custom:button-card
+                                color_type: blank-card
+                              - type: custom:button-card
+                                show_icon: false
+                                show_name: true
+                                name: View Room
+                                icon: mdi:chevron-right
+                                size: 100%
+                                styles:
+                                  card:
+                                    - height: 40px
+                                tap_action:
+                                  action: navigate
+                                  navigation_path: /lovelace-bathroom/
+                                card_mod:
+                                  style: |
+                                    ha-card {
+                                      background: none;
+                                      box-shadow: none;
+                                    }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: none;
+                              box-shadow: none;
+                            }
                     card_mod:
                       style: |
                         ha-card {
