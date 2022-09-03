@@ -1,0 +1,167 @@
+type: custom:stack-in-card
+cards:
+  - type: custom:mushroom-title-card
+    title: Bedroom
+    alignment: center
+  - type: vertical-stack
+    cards:
+      - square: false
+        columns: 6
+        type: grid
+        cards:
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            show_icon: true
+            show_name: false
+            icon: mdi:chevron-right
+            size: 100%
+            layout: vertical
+            color_type: card
+            color: rgba(245,66,158,.6);
+            styles:
+              card:
+                - height: 40px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-bedroom/
+      - type: entities
+        state_color: false
+        entities:
+          - type: divider
+      - type: vertical-stack
+        cards:
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: sensor.temperature_bedroom
+                show_icon: false
+                show_name: true
+                name: Temperature
+                show_state: true
+                size: 100%
+                layout: vertical
+                color_type: card
+                color: rgba(245,66,158,.6);
+                styles:
+                  card:
+                    - height: 40px
+                tap_action:
+                  action: more-info
+              - type: custom:button-card
+                entity: sensor.humidity_bedroom
+                show_icon: false
+                show_name: true
+                name: Humidity
+                show_state: true
+                size: 100%
+                layout: vertical
+                color_type: card
+                color: rgba(245,66,158,.6);
+                styles:
+                  card:
+                    - height: 40px
+                tap_action:
+                  action: more-info
+  - type: vertical-stack
+    cards:
+      - type: entities
+        state_color: false
+        entities:
+          - type: divider
+          - entity: light.bedroom_light
+          - entity: switch.closet_light
+          - entity: switch.bedroom_ac
+            toggle: true
+            type: custom:multiple-entity-row
+            entities:
+              - entity: sensor.ac_bedroom_usage
+                name: false
+          - entity: switch.vornado_mac
+          - entity: switch.duct_fan
+          - entity: switch.noise_maker
+          - type: divider
+          - type: custom:mini-media-player
+            entity: media_player.bedroom_assistant
+            color: rgba(245,66,158,.6);
+            volume_stateless: true
+            group: true
+            artwork: material
+            toggle_power: false
+            shortcuts:
+              columns: 3
+              buttons:
+                - name: Set Volume (85)
+                  type: script
+                  id: script.bedroom_assistant_set_volume
+                - name: White Noise
+                  type: script
+                  id: script.bedroom_white_noise
+          - type: custom:mini-media-player
+            entity: media_player.bose_speakers
+            color: rgba(245,66,158,.6);
+            volume_stateless: true
+            group: true
+            artwork: material
+            toggle_power: false
+            shortcuts:
+              columns: 3
+              buttons: null
+          - type: custom:mini-media-player
+            entity: media_player.sony_bravia_tv
+            color: rgba(245,66,158,.6);
+            volume_stateless: true
+            group: true
+            artwork: material
+            info: scroll
+            toggle_power: false
+            shortcuts:
+              columns: 2
+              buttons: null
+          - type: custom:mini-media-player
+            entity: media_player.tv
+            color: rgba(245,66,158,.6);
+            volume_stateless: true
+            group: true
+            artwork: material
+            info: scroll
+            toggle_power: false
+            shortcuts:
+              columns: 2
+              buttons:
+                - name: Set Volume (20)
+                  type: script
+                  id: script.bedroom_tv_set_volume_20
+                - name: White Noise
+                  type: script
+                  id: script.bedroom_tv_white_noise_start
+                - name: Restart (7 Sec)
+                  type: script
+                  id: script.bedroom_tv_video_restart
+                - name: Toggle Picture
+                  type: script
+                  id: script.bedroom_tv_picture_off
+                - name: Power
+                  type: script
+                  id: script.bedroom_tv_power
+                - name: Netflix
+                  type: script
+                  id: script.bedroom_tv_netflix
+card_mod:
+  style: |
+    ha-card {
+      background: rgba(245,66,158,.3);
+      box-shadow: none;
+      color: white;
+      --card-mod-icon-color: white;
+    }
