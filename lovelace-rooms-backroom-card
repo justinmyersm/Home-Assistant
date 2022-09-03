@@ -49,7 +49,23 @@ cards:
           - type: custom:paper-buttons-row
             styles:
               '--paper-item-icon-color': white
-              '--paper-item-icon-active-color': yellow
+            extra_styles: |
+              @keyframes custom-active {
+                from   {
+                background-color: #66666650;
+                border-radius: 3px;
+                padding: 1em;
+                margin: -1em;
+                --paper-item-icon-active-color: white;
+                }
+                to {
+                background-color: #66666650;
+                border-radius: 3px;
+                padding: 1em;
+                margin: -1em;
+                --paper-item-icon-active-color: #ffff00;
+                }
+              }
             buttons:
               - entity: light.backroom_lights
                 name: false
@@ -63,7 +79,7 @@ cards:
                 state_styles:
                   'on':
                     button:
-                      animation: blink 1s ease infinite
+                      animation: custom-active 1s ease-in-out infinite
                     icon:
                       color: var(--paper-item-icon-active-color)
               - entity: binary_sensor.motion_backroom_pir_sensor
@@ -78,7 +94,7 @@ cards:
                 state_styles:
                   'on':
                     button:
-                      animation: blink 1s ease infinite
+                      animation: custom-active 1s ease-in-out infinite
                     icon:
                       color: var(--paper-item-icon-active-color)
               - entity: binary_sensor.backdoor_inside
@@ -93,7 +109,7 @@ cards:
                 state_styles:
                   'on':
                     button:
-                      animation: blink 1s ease infinite
+                      animation: custom-active 1s ease-in-out infinite
                     icon:
                       color: var(--paper-item-icon-active-color)
               - entity: binary_sensor.backdoor_outside
@@ -108,7 +124,7 @@ cards:
                 state_styles:
                   'on':
                     button:
-                      animation: blink 1s ease infinite
+                      animation: custom-active 1s ease-in-out infinite
                     icon:
                       color: var(--paper-item-icon-active-color)
               - entity: binary_sensor.cat_food
@@ -123,9 +139,21 @@ cards:
                 state_styles:
                   'on':
                     button:
-                      animation: blink 1s ease infinite
+                      animation: custom-active 1s ease-in-out infinite
                     icon:
                       color: var(--paper-item-icon-active-color)
+    card_mod:
+      style: |
+        ha-card {
+          background: none;
+          box-shadow: none;
+          margin-top: -1em;
+          margin-bottom: -1em;
+        }
+  - type: custom:stack-in-card
+    cards:
+      - type: entities
+        entities:
           - type: custom:fold-entity-row
             padding: 0
             head:
@@ -143,7 +171,7 @@ cards:
               card_mod:
                 style: |
                   ha-card {
-                    background: rgba(102, 102, 102, .6);
+                    background: rgba(102, 102, 102, .3);
                     box-shadow: none;
                   }
             entities:
@@ -394,6 +422,42 @@ cards:
                                   background: none;
                                   box-shadow: none;
                                 }
+                      - type: custom:stack-in-card
+                        cards:
+                          - type: custom:button-card
+                            show_icon: false
+                            show_name: true
+                            name: View Room
+                            icon: mdi:chevron-right
+                            size: 100%
+                            color_type: card
+                            color: rgba(102, 102, 102, .6);
+                            extra_styles: |
+                              @keyframes example {
+                                from {background-color: rgba(102, 102, 102, 0);}
+                                to {background-color: rgba(102, 102, 102, 1);}
+                              }
+                            styles:
+                              card:
+                                - height: 40px
+                                - font-size: 1.1em
+                                - position: relative
+                                - animation: example 5s linear 2s infinite alternate
+                            tap_action:
+                              action: navigate
+                              navigation_path: /lovelace-backroom/
+                            card_mod:
+                              style: |
+                                ha-card {
+                                  background: none;
+                                  box-shadow: none;
+                                }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: rgba(102, 102, 102, .3);
+                              box-shadow: none;
+                            }
                     card_mod:
                       style: |
                         ha-card {
