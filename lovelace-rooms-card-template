@@ -3,7 +3,8 @@ type: custom:stack-in-card
    - type: custom:stack-in-card 
      cards: 
        - type: custom:mushroom-title-card 
-         title: Backroom 
+# Room name
+         title:
          alignment: center 
      card_mod: 
        style: | 
