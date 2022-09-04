@@ -134,6 +134,24 @@ cards:
                       animation: custom-active 1s ease-in-out infinite
                     icon:
                       color: var(--paper-item-icon-active-color)
+              - entity: binary_sensor.litter_box_threshold
+                name: false
+                layout: icon_state
+                tap_action:
+                  action: call-service
+                  service: script.litter_box_clean
+                state_icons:
+                  'on': phu:litterbox
+                  'off': phu:litterbox
+                state_text:
+                  'on': Cleaning
+                  'off': 'Off'
+                state_styles:
+                  'on':
+                    button:
+                      animation: custom-active 1s ease-in-out infinite
+                    icon:
+                      color: var(--paper-item-icon-active-color)
     card_mod:
       style: |
         ha-card {
@@ -414,7 +432,6 @@ cards:
                                   background: none;
                                   box-shadow: none;
                                 }
-
                       - type: custom:gap-card
                         height: 15
                       - type: custom:stack-in-card
