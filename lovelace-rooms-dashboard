@@ -1,0 +1,2651 @@
+views:
+  - theme: Backend-selected
+    title: Home
+    type: custom:vertical-layout
+    icon: hue:room-other
+    badges: []
+    cards:
+      - type: custom:mushroom-title-card
+        title: Rooms
+        alignment: center
+        subtitle: ''
+      - square: false
+        columns: 7
+        type: grid
+        cards:
+          - type: custom:button-card
+            icon: mdi:home-assistant
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-home/
+          - type: custom:button-card
+            icon: hue:room-other
+            color_type: card
+            color: '#0099ff'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-rooms/
+          - type: custom:button-card
+            icon: mdi:home-thermometer
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-climate/
+          - type: custom:button-card
+            icon: mdi:paw
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-pets/
+          - type: custom:button-card
+            icon: phu:wyzecam
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-cctv/
+          - type: custom:button-card
+            icon: mdi:sprout
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-plants/
+          - type: custom:button-card
+            icon: mdi:cog
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-settings/
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Rooms
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:stack-in-card
+            cards:
+              - type: custom:mushroom-title-card
+                title: Backroom
+                alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  margin-top: -1em;
+                  margin-bottom: -1em;
+                }
+          - type: custom:stack-in-card
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:paper-buttons-row
+                    styles:
+                      '--paper-item-icon-color': white
+                      '--paper-item-icon-active-color': yellow
+                    buttons:
+                      - entity: sensor.temperature_backroom
+                        name: false
+                        layout: icon_name|state
+                        state:
+                          postfix: °F
+                        icon: mdi:thermometer
+                      - entity: sensor.illuminance_backroom_pir_sensor
+                        name: false
+                        layout: icon_name|state
+                        state:
+                          postfix: lx
+                        icon: mdi:brightness-5
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  margin-top: -1em;
+                  margin-bottom: -1em;
+                }
+          - type: custom:stack-in-card
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:paper-buttons-row
+                    styles:
+                      '--paper-item-icon-color': white
+                    extra_styles: |
+                      @keyframes custom-active {
+                        from   {
+                        --paper-item-icon-active-color: white;
+                        }
+                        to {
+                        --paper-item-icon-active-color: #ffff00;
+                        }
+                      }
+                    buttons:
+                      - entity: light.backroom_lights
+                        name: false
+                        layout: icon_state
+                        state_icons:
+                          'on': phu:ceiling-flourish
+                          'off': phu:ceiling-flourish
+                        state_text:
+                          'on': 'On'
+                          'off': 'Off'
+                        state_styles:
+                          'on':
+                            button:
+                              animation: custom-active 1s ease-in-out infinite
+                            icon:
+                              color: var(--paper-item-icon-active-color)
+                      - entity: binary_sensor.motion_backroom_pir_sensor
+                        name: false
+                        layout: icon_state
+                        state_icons:
+                          'on': mdi:motion-sensor
+                          'off': mdi:motion-sensor-off
+                        state_text:
+                          'on': Motion
+                          'off': Clear
+                        state_styles:
+                          'on':
+                            button:
+                              animation: custom-active 1s ease-in-out infinite
+                            icon:
+                              color: var(--paper-item-icon-active-color)
+                      - entity: binary_sensor.backdoor_inside
+                        name: false
+                        layout: icon_state
+                        state_icons:
+                          'on': phu:panel-glass-door3-open
+                          'off': phu:panel-glass-door3-close
+                        state_text:
+                          'on': Open
+                          'off': Closed
+                        state_styles:
+                          'on':
+                            button:
+                              animation: custom-active 1s ease-in-out infinite
+                            icon:
+                              color: var(--paper-item-icon-active-color)
+                      - entity: binary_sensor.backdoor_outside
+                        name: false
+                        layout: icon_state
+                        state_icons:
+                          'on': phu:panel-glass-door3-open
+                          'off': phu:panel-glass-door3-close
+                        state_text:
+                          'on': Open
+                          'off': Closed
+                        state_styles:
+                          'on':
+                            button:
+                              animation: custom-active 1s ease-in-out infinite
+                            icon:
+                              color: var(--paper-item-icon-active-color)
+                      - entity: binary_sensor.cat_food
+                        name: false
+                        layout: icon_state
+                        state_icons:
+                          'on': mdi:cat
+                          'off': mdi:cat
+                        state_text:
+                          'on': Open
+                          'off': Closed
+                        state_styles:
+                          'on':
+                            button:
+                              animation: custom-active 1s ease-in-out infinite
+                            icon:
+                              color: var(--paper-item-icon-active-color)
+                      - entity: binary_sensor.litter_box_threshold
+                        name: false
+                        layout: icon_state
+                        tap_action:
+                          action: call-service
+                          service: script.litter_box_clean
+                        state_icons:
+                          'on': phu:litterbox
+                          'off': phu:litterbox
+                        state_text:
+                          'on': Cleaning
+                          'off': 'Off'
+                        state_styles:
+                          'on':
+                            button:
+                              animation: custom-active 1s ease-in-out infinite
+                            icon:
+                              color: var(--paper-item-icon-active-color)
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  margin-top: -1em;
+                  margin-bottom: -1em;
+                }
+          - type: custom:stack-in-card
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:fold-entity-row
+                    padding: 0
+                    head:
+                      type: custom:stack-in-card
+                      cards:
+                        - square: false
+                          columns: 1
+                          type: grid
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - height: 40px
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background: rgba(102, 102, 102, .3);
+                            box-shadow: none;
+                          }
+                    entities:
+                      - type: custom:stack-in-card
+                        cards:
+                          - type: entities
+                            entities:
+                              - type: custom:text-divider-row
+                                text: Lights & Doors
+                                align: left
+                                style: |
+                                  h2:before, h2:after {
+                                    position: absolute;
+                                    top: 51%;
+                                    overflow: hidden;
+                                    width: 90%;
+                                    height: var(--line-size);
+                                    content: '\a0';
+                                    background-color: var(--divider-color);
+                                  }
+                                  h2:before {
+                                    margin-left: -100%;
+                                    text-align: right;
+                                  }
+                                  h2.text-divider {
+                                    border-bottom: none;
+                                  }
+                                  h2.text-divider span {
+                                    background: none;
+                                    margin-left: -1%;
+                                  }
+                              - type: custom:fold-entity-row
+                                head: light.backroom_lights
+                                entities:
+                                  - type: custom:slider-entity-row
+                                    entity: light.backroom_light_1
+                                    name: Light 1
+                                  - type: custom:slider-entity-row
+                                    entity: light.backroom_light_2
+                                    name: Light 2
+                              - entity: binary_sensor.backdoor_inside
+                                name: Inside
+                              - entity: binary_sensor.backdoor_outside
+                                name: Outside
+                              - type: custom:text-divider-row
+                                text: Cats
+                                align: left
+                                style: |
+                                  h2:before, h2:after {
+                                    position: absolute;
+                                    top: 51%;
+                                    overflow: hidden;
+                                    width: 90%;
+                                    height: var(--line-size);
+                                    content: '\a0';
+                                    background-color: var(--divider-color);
+                                  }
+                                  h2:before {
+                                    margin-left: -100%;
+                                    text-align: right;
+                                  }
+                                  h2.text-divider {
+                                    border-bottom: none;
+                                  }
+                                  h2.text-divider span {
+                                    background: none;
+                                    margin-left: -1%;
+                                  }
+                              - type: custom:fold-entity-row
+                                head:
+                                  entity: binary_sensor.cat_food
+                                padding: 0
+                                entities:
+                                  - type: custom:button-card
+                                    entity: input_boolean.cats_fed
+                                    styles:
+                                      grid:
+                                        - grid-template-areas: '"cats_fed"'
+                                        - grid-template-columns: 1fr
+                                        - grid-template-rows: 1fr
+                                        - height: 30px
+                                        - position: relative
+                                        - top: '-1.6em'
+                                    show_icon: false
+                                    show_name: false
+                                    size: 30px
+                                    color_type: card
+                                    color: auto
+                                    custom_fields:
+                                      cats_fed:
+                                        card:
+                                          type: custom:logbook-card
+                                          style: |
+                                            ha-card {
+                                              font-size: .9em;
+                                              text-align: center;
+                                              background: rgba(0,0,0,0);
+                                            }
+                                          desc: true
+                                          no_event: FEED THE CATS!
+                                          entity: binary_sensor.cat_food
+                                          title: false
+                                          state_map:
+                                            - label: Cats Fed
+                                              value: 'on'
+                                            - label: Closed
+                                              value: 'off'
+                                          show:
+                                            end_date: false
+                                            start_date: true
+                                            duration: false
+                                            icon: false
+                                            separator: true
+                                          hiddenState:
+                                            - 'off'
+                                            - unavailable
+                                          duration: false
+                                          value_template: >-
+                                            {{ now().timestamp() |
+                                            timestamp_custom('%a %d-%m-%Y %-I:%M
+                                            %p') }}
+                                          collapse: 1
+                                          max_items: 1
+                                          history: 1
+                                    state:
+                                      - value: 'on'
+                                        color: '#128F00'
+                                      - value: 'off'
+                                        color: '#880808'
+                                        animation: blink 2s ease infinite
+                              - type: custom:fold-entity-row
+                                head:
+                                  entity: binary_sensor.litter_box_threshold
+                                  name: Litter Box
+                                padding: 0
+                                entities:
+                                  - type: custom:button-card
+                                    entity: input_boolean.litter_box
+                                    styles:
+                                      grid:
+                                        - grid-template-areas: '"magic_potty"'
+                                        - grid-template-columns: 1fr
+                                        - grid-template-rows: 1fr
+                                        - height: 30px
+                                        - position: relative
+                                        - top: '-1.6em'
+                                    show_icon: false
+                                    show_name: false
+                                    size: 30px
+                                    color_type: card
+                                    color: auto
+                                    custom_fields:
+                                      magic_potty:
+                                        card:
+                                          type: custom:logbook-card
+                                          style: |
+                                            ha-card {
+                                              font-size: .9em;
+                                              text-align: center;
+                                              background: rgba(0,0,0,0);
+                                            }
+                                          desc: true
+                                          no_event: More than 4hrs
+                                          entity: input_boolean.litter_box
+                                          title: false
+                                          state_map:
+                                            - label: Went Potty
+                                              value: 'on'
+                                            - label: More than 4hrs
+                                              value: 'off'
+                                          show:
+                                            end_date: false
+                                            start_date: true
+                                            duration: false
+                                            icon: false
+                                            separator: true
+                                          hiddenState:
+                                            - 'off'
+                                            - unavailable
+                                          duration: false
+                                          value_template: >-
+                                            {{ now().timestamp() |
+                                            timestamp_custom('%a %d-%m-%Y %-I:%M
+                                            %p') }}
+                                          collapse: 1
+                                          max_items: 1
+                                          history: 1
+                                    state:
+                                      - value: 'on'
+                                        color: '#128F00'
+                                      - value: 'off'
+                                        color: '#880808'
+                                        animation: blink 2s ease infinite
+                              - type: custom:text-divider-row
+                                text: Camera
+                                align: left
+                                style: |
+                                  h2:before, h2:after {
+                                    position: absolute;
+                                    top: 51%;
+                                    overflow: hidden;
+                                    width: 90%;
+                                    height: var(--line-size);
+                                    content: '\a0';
+                                    background-color: var(--divider-color);
+                                  }
+                                  h2:before {
+                                    margin-left: -100%;
+                                    text-align: right;
+                                  }
+                                  h2.text-divider {
+                                    border-bottom: none;
+                                  }
+                                  h2.text-divider span {
+                                    background: none;
+                                    margin-left: -1%;
+                                  }
+                              - type: custom:fold-entity-row
+                                head:
+                                  entity: camera.backdoor_cam
+                                  name: Backdoor Cam
+                                padding: 0
+                                entities:
+                                  - type: custom:stack-in-card
+                                    mode: vertical
+                                    cards:
+                                      - type: entities
+                                        state_color: false
+                                        entities:
+                                          - type: divider
+                                            style:
+                                              height: 10px
+                                              background: rgba(102, 102, 102, 0);
+                                      - type: picture-entity
+                                        show_state: false
+                                        show_name: false
+                                        camera_view: live
+                                        entity: camera.backdoor_cam
+                                        name: Backdoor Cam
+                                        camera_image: camera.backdoor_cam
+                                      - type: entities
+                                        state_color: false
+                                        entities:
+                                          - type: divider
+                                            style:
+                                              height: 0px
+                                    card_mod:
+                                      style: |
+                                        ha-card {
+                                          background: none;
+                                          box-shadow: none;
+                                        }
+                              - type: custom:gap-card
+                                height: 15
+                              - type: custom:stack-in-card
+                                cards:
+                                  - type: custom:button-card
+                                    show_icon: false
+                                    show_name: true
+                                    name: View Room
+                                    icon: mdi:chevron-right
+                                    size: 100%
+                                    styles:
+                                      card:
+                                        - height: 40px
+                                        - font-size: 1.1em
+                                    tap_action:
+                                      action: navigate
+                                      navigation_path: /lovelace-backroom/
+                                    card_mod:
+                                      style: |
+                                        ha-card {
+                                          background: none;
+                                          box-shadow: none;
+                                        }
+                                card_mod:
+                                  style: |
+                                    ha-card {
+                                      background: rgba(102, 102, 102, .3);
+                                      box-shadow: none;
+                                    }
+                            card_mod:
+                              style: |
+                                ha-card {
+                                  background: none;
+                                  box-shadow: none;
+                                  color: white;
+                                  --card-mod-icon-color: white;
+                                }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: none;
+                              box-shadow: none;
+                              width: 96%;
+                              margin-left: .65em;
+                            }
+                    card_mod:
+                      style: |
+                        #head {
+                          margin-left: 32px;
+                          }
+                        ha-icon {
+                          display: none; !important
+                          }
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  width: 110%;
+                  margin-left: -1.5em;
+                  margin-top: -1em;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(102, 102, 102, .6);
+              box-shadow: none;
+            }
+      - type: custom:gap-card
+        height: 1
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:stack-in-card
+            cards:
+              - type: custom:mushroom-title-card
+                title: Bathroom
+                alignment: center
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  margin-top: -1em;
+                  margin-bottom: -1em;
+                }
+          - type: custom:stack-in-card
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:paper-buttons-row
+                    styles:
+                      '--paper-item-icon-color': white
+                      '--paper-item-icon-active-color': yellow
+                    buttons:
+                      - entity: sensor.temperature_bathroom
+                        name: false
+                        layout: icon_name|state
+                        state:
+                          postfix: °F
+                        icon: mdi:thermometer
+                      - entity: sensor.humidity_bathroom
+                        name: false
+                        layout: icon_name|state
+                        state:
+                          postfix: '%'
+                        icon: mdi:water-percent
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  margin-top: -1em;
+                  margin-bottom: -1em;
+                }
+          - type: custom:stack-in-card
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:paper-buttons-row
+                    styles:
+                      '--paper-item-icon-color': white
+                    extra_styles: |
+                      @keyframes custom-active {
+                        from   {
+                        --paper-item-icon-active-color: white;
+                        }
+                        to {
+                        --paper-item-icon-active-color: #ffff00;
+                        }
+                      }
+                    buttons:
+                      - entity: climate.bathroom_heater
+                        name: false
+                        layout: icon_state
+                        state_icons:
+                          heat: mdi:thermostat
+                          'off': mdi:thermostat
+                        state_text:
+                          heat: Heat
+                          'off': 'Off'
+                        state_styles:
+                          heat:
+                            button:
+                              animation: blink 1s ease infinite
+                              color: var(--paper-item-icon-active-color)
+                      - entity: switch.bathroom_space_heater
+                        name: false
+                        layout: icon_state
+                        state_icons:
+                          'on': mdi:radiator
+                          'off': mdi:radiator-off
+                        state_text:
+                          'on': 'On'
+                          'off': 'Off'
+                        state_styles:
+                          'on':
+                            button:
+                              animation: blink 1s ease infinite
+                            icon:
+                              color: var(--paper-item-icon-active-color)
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  margin-top: -1em;
+                  margin-bottom: -1em;
+                }
+          - type: custom:stack-in-card
+            cards:
+              - type: entities
+                entities:
+                  - type: custom:fold-entity-row
+                    padding: 0
+                    head:
+                      type: custom:stack-in-card
+                      cards:
+                        - square: false
+                          columns: 1
+                          type: grid
+                          cards:
+                            - type: custom:button-card
+                              color_type: blank-card
+                              styles:
+                                card:
+                                  - height: 40px
+                      card_mod:
+                        style: |
+                          ha-card {
+                            background: rgba(179,149,255,.3);
+                            box-shadow: none;
+                          }
+                    entities:
+                      - type: custom:stack-in-card
+                        cards:
+                          - type: entities
+                            entities:
+                              - type: divider
+                              - type: custom:stack-in-card
+                                card_mod:
+                                  style: |
+                                    ha-card {
+                                      background: rgba(0,0,0,.0);
+                                      box-shadow: none;
+                                      color: white;
+                                      --card-mod-icon-color: white;
+                                    }
+                                cards:
+                                  - type: conditional
+                                    conditions:
+                                      - entity: switch.bathroom_space_heater
+                                        state: 'on'
+                                    card:
+                                      type: custom:simple-thermostat
+                                      entity: climate.bathroom_heater
+                                      label:
+                                        temperature: Bathroom
+                                        state: Mode
+                                      sensors:
+                                        - entity: sensor.temperature_inside
+                                          name: Inside
+                                      header:
+                                        name: false
+                                        icon: false
+                                      fallback: 'Off'
+                                      layout:
+                                        step: column
+                                        mode:
+                                          headings: false
+                                      step_size: 1
+                                      style: |
+                                        ha-card {
+                                          --st-font-size-xl: 1em;
+                                          --st-font-size-m: 1em;
+                                          --st-font-size-title: 1.25em;
+                                          --st-font-size-sensors: 1em;
+                                          --st-spacing: 0.1em;
+                                          background: rgba(179,149,255,0);
+                                        }
+                                  - type: conditional
+                                    conditions:
+                                      - entity: switch.bathroom_space_heater
+                                        state: 'on'
+                                      - entity: climate.bathroom_heater
+                                        state: 'off'
+                                    card:
+                                      type: custom:timer-bar-card
+                                      entity: timer.space_heater_timer
+                                      layout: full_row
+                                      bar_foreground: '#ffffff'
+                                      bar_background: rgba(179,149,255,.6);
+                                      bar_radius: 4px
+                                      invert: true
+                                      bar_direction: rtl
+                                      tap_action:
+                                        action: call-service
+                                        service: switch.turn_off
+                                        data: {}
+                                        target:
+                                          entity_id: switch.bathroom_space_heater
+                                      card_mod:
+                                        style: |
+                                          ha-card {
+                                            background: none;
+                                            box-shadow: none;
+                                          }
+                              - entity: switch.bathroom_space_heater
+                                toggle: true
+                                type: custom:multiple-entity-row
+                                entities:
+                                  - entity: sensor.heat_5_usage
+                                    name: false
+                              - entity: binary_sensor.bathroom_hair_curler
+                              - type: divider
+                              - type: custom:mini-media-player
+                                entity: media_player.bathroom_home_mini
+                                color: rgba(179,149,255,.6);
+                                volume_stateless: true
+                                group: true
+                                artwork: material
+                                toggle_power: false
+                                shortcuts:
+                                  columns: 3
+                                  buttons:
+                                    - name: My Mix 1
+                                      type: script
+                                      id: script.youtube_music_my_mix_1_bathroom
+                                    - name: Big Mix 7
+                                      type: script
+                                      id: script.youtube_music_big_mix_7_bathroom
+                                    - name: My Likes
+                                      type: script
+                                      id: script.youtube_music_likes_bathroom
+                                      card_mod:
+                                        style: |
+                                          ha-card {
+                                            background: none;
+                                            box-shadow: none;
+                                          }
+                              - type: custom:gap-card
+                                height: 15
+                              - type: custom:stack-in-card
+                                cards:
+                                  - type: custom:button-card
+                                    show_icon: false
+                                    show_name: true
+                                    name: View Room
+                                    icon: mdi:chevron-right
+                                    size: 100%
+                                    color_type: card
+                                    color: rgba(102, 102, 102, .6);
+                                    styles:
+                                      card:
+                                        - height: 40px
+                                        - font-size: 1.1em
+                                    tap_action:
+                                      action: navigate
+                                      navigation_path: /lovelace-bathroom/
+                                    card_mod:
+                                      style: |
+                                        ha-card {
+                                          background: none;
+                                          box-shadow: none;
+                                        }
+                                card_mod:
+                                  style: |
+                                    ha-card {
+                                      background: rgba(179,149,255,.3);
+                                      box-shadow: none;
+                                    }
+                            card_mod:
+                              style: |
+                                ha-card {
+                                  background: none;
+                                  box-shadow: none;
+                                  color: white;
+                                  --card-mod-icon-color: white;
+                                }
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: none;
+                              box-shadow: none;
+                              width: 96%;
+                              margin-left: .65em;
+                            }
+                    card_mod:
+                      style: |
+                        #head {
+                          margin-left: 32px;
+                          }
+                        ha-icon {
+                          display: none; !important
+                        }
+            card_mod:
+              style: |
+                ha-card {
+                  background: none;
+                  box-shadow: none;
+                  width: 110%;
+                  margin-left: -1.5em;
+                  margin-top: -1em;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(179,149,255,.3);
+              box-shadow: none;
+            }
+      - type: custom:gap-card
+        height: 1
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Bedroom
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(245,66,158,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-bedroom/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_bedroom
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(245,66,158,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_bedroom
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(245,66,158,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                  - entity: light.bedroom_light
+                  - entity: switch.closet_light
+                  - entity: switch.bedroom_ac
+                    toggle: true
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.ac_bedroom_usage
+                        name: false
+                  - entity: switch.vornado_mac
+                  - entity: switch.duct_fan
+                  - entity: switch.noise_maker
+                  - type: divider
+                  - type: custom:mini-media-player
+                    entity: media_player.bedroom_assistant
+                    color: rgba(245,66,158,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons:
+                        - name: Set Volume (85)
+                          type: script
+                          id: script.bedroom_assistant_set_volume
+                        - name: White Noise
+                          type: script
+                          id: script.bedroom_white_noise
+                  - type: custom:mini-media-player
+                    entity: media_player.bose_speakers
+                    color: rgba(245,66,158,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons: null
+                  - type: custom:mini-media-player
+                    entity: media_player.sony_bravia_tv
+                    color: rgba(245,66,158,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    info: scroll
+                    toggle_power: false
+                    shortcuts:
+                      columns: 2
+                      buttons: null
+                  - type: custom:mini-media-player
+                    entity: media_player.tv
+                    color: rgba(245,66,158,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    info: scroll
+                    toggle_power: false
+                    shortcuts:
+                      columns: 2
+                      buttons:
+                        - name: Set Volume (20)
+                          type: script
+                          id: script.bedroom_tv_set_volume_20
+                        - name: White Noise
+                          type: script
+                          id: script.bedroom_tv_white_noise_start
+                        - name: Restart (7 Sec)
+                          type: script
+                          id: script.bedroom_tv_video_restart
+                        - name: Toggle Picture
+                          type: script
+                          id: script.bedroom_tv_picture_off
+                        - name: Power
+                          type: script
+                          id: script.bedroom_tv_power
+                        - name: Netflix
+                          type: script
+                          id: script.bedroom_tv_netflix
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(245,66,158,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:gap-card
+        height: 1
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Foreroom
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(242,140,40,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-foreroom/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_foreroom
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(242,140,40,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_foreroom
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(242,140,40,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(242,140,40,0);
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: climate.dining_room_ac
+                      name: Air Conditioner
+                    padding: 0
+                    entities:
+                      - type: divider
+                        style:
+                          height: 10px
+                          background: rgba(242,140,40,0);
+                      - type: custom:simple-thermostat
+                        entity: climate.dining_room_ac
+                        label:
+                          temperature: Foreroom
+                          state: Mode
+                        sensors:
+                          - entity: sensor.temperature_inside
+                            name: Inside
+                        header:
+                          name: false
+                          icon: false
+                        layout:
+                          step: column
+                          mode:
+                            headings: false
+                        step_size: 1
+                        style: |
+                          ha-card {
+                            --st-font-size-xl: 1em;
+                            --st-font-size-m: 1em;
+                            --st-font-size-title: 1.25em;
+                            --st-font-size-sensors: 1em;
+                            --st-spacing: 0.1em;
+                            background: rgba(38,38,38,1);
+                            --st-mode-active-background: rgba(242,140,40,.3);
+                            --st-mode-active-color: rgba(255,255,255,1);
+                          }
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(242,140,40,0);
+                  - type: divider
+                  - entity: lock.front_door
+                  - entity: binary_sensor.front_door_open
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.front_door_battery
+                        name: false
+                    name: Front Door
+                  - type: divider
+                  - entity: binary_sensor.motion_foreroom_left_pir_sensor
+                    name: Motion
+                  - entity: binary_sensor.motion_foreroom_right_pir_sensor
+                    name: Motion
+                  - entity: switch.dining_room_light
+                    name: Foreroom Fan Light
+                  - entity: switch.front_room_light
+                    name: Foreroom Light
+                  - entity: switch.dining_room_table
+                    name: Foreroom Table Light
+                  - entity: binary_sensor.chest_freezer
+                    name: Chest Freezer
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.chest_freezer_usage
+                        name: false
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: vacuum.home_vacuum
+                    padding: 0
+                    entities:
+                      - type: custom:stack-in-card
+                        mode: vertical
+                        cards:
+                          - type: vertical-stack
+                            cards:
+                              - type: conditional
+                                conditions:
+                                  - entity: vacuum.home_vacuum
+                                    state: docked
+                                card:
+                                  type: custom:mushroom-vacuum-card
+                                  entity: vacuum.home_vacuum
+                                  fill_container: false
+                                  hide_state: false
+                                  commands:
+                                    - start_pause
+                                  layout: horizontal
+                          - type: conditional
+                            conditions:
+                              - entity: vacuum.home_vacuum
+                                state: docked
+                            card:
+                              show_state: false
+                              show_name: false
+                              camera_view: auto
+                              type: picture-entity
+                              entity: camera.home_vacuum_camera
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: binary_sensor.dog_food
+                    padding: 0
+                    entities:
+                      - type: custom:button-card
+                        entity: input_boolean.dogs_fed
+                        styles:
+                          grid:
+                            - grid-template-areas: '"dogs_fed"'
+                            - grid-template-columns: 1fr
+                            - grid-template-rows: 1fr
+                            - height: 30px
+                            - position: relative
+                            - top: '-1.6em'
+                        show_icon: false
+                        show_name: false
+                        size: 30px
+                        color_type: card
+                        color: auto
+                        custom_fields:
+                          dogs_fed:
+                            card:
+                              type: custom:logbook-card
+                              style: |
+                                ha-card {
+                                  font-size: .9em;
+                                  text-align: center;
+                                  background: rgba(0,0,0,0);
+                                }
+                              desc: true
+                              no_event: FEED THE DOGS!
+                              entity: binary_sensor.dog_food
+                              title: false
+                              state_map:
+                                - label: Dogs Fed
+                                  value: 'on'
+                                - label: Closed
+                                  value: 'off'
+                              show:
+                                end_date: false
+                                start_date: true
+                                duration: false
+                                icon: false
+                                separator: true
+                                state: true
+                              hiddenState:
+                                - 'off'
+                                - unavailable
+                              duration: false
+                              value_template: >-
+                                {{ now().timestamp() | timestamp_custom('%a
+                                %d-%m-%Y %-I:%M %p') }}
+                              collapse: 1
+                              history: 1
+                              max_items: 1
+                        state:
+                          - value: 'on'
+                            color: '#128F00'
+                          - value: 'off'
+                            color: '#880808'
+                            animation: blink 2s ease infinite
+                  - type: divider
+                  - type: custom:mini-media-player
+                    entity: media_player.living_room_speaker
+                    name: Foreroom Speaker
+                    color: rgba(245,66,158,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons: null
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: camera.pet_cam
+                      name: Pet Cam
+                    padding: 0
+                    entities:
+                      - type: custom:stack-in-card
+                        mode: vertical
+                        cards:
+                          - type: entities
+                            state_color: false
+                            entities:
+                              - type: divider
+                                style:
+                                  height: 10px
+                                  background: rgba(0,0,0,0);
+                          - type: picture-entity
+                            show_state: false
+                            show_name: false
+                            camera_view: live
+                            entity: camera.pet_cam
+                            name: Foreroom Cam
+                            camera_image: camera.pet_cam
+                          - type: entities
+                            state_color: false
+                            entities:
+                              - type: divider
+                                style:
+                                  height: 0px
+                                  background: rgba(0,0,0,0);
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: rgba(0,0,0,0);
+                              box-shadow: none;
+                              color: white;
+                              --card-mod-icon-color: white;
+                            }
+                  - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: camera.living_room_cam
+                      name: Foreroom Cam
+                    padding: 0
+                    entities:
+                      - type: custom:stack-in-card
+                        mode: vertical
+                        cards:
+                          - type: entities
+                            state_color: false
+                            entities:
+                              - type: divider
+                                style:
+                                  height: 10px
+                                  background: rgba(0,0,0,0);
+                          - type: picture-entity
+                            show_state: false
+                            show_name: false
+                            camera_view: live
+                            entity: camera.living_room_cam
+                            name: Foreroom Cam
+                            camera_image: camera.living_room_cam
+                          - type: entities
+                            state_color: false
+                            entities:
+                              - type: divider
+                                style:
+                                  height: 0px
+                                  background: rgba(0,0,0,0);
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: rgba(0,0,0,0);
+                              box-shadow: none;
+                              color: white;
+                              --card-mod-icon-color: white;
+                            }
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(242,140,40,.6);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(242,140,40,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:gap-card
+        height: 25
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Growroom
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(61, 209, 93,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-plants/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_growroom
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(61, 209, 93,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_tent
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(61, 209, 93,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                  - entity: sensor.humidifier_water_lack
+                    name: Out of Water
+                    icon: mdi:water-off
+                  - entity: switch.grow_lights
+                    toggle: true
+                    icon: mdi:cactus
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.grow_room_usage
+                        name: false
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(61, 209, 93,.6);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(61, 209, 93,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:gap-card
+        height: 25
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Gym
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(136, 8, 8,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-gym/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_gym
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(136, 8, 8,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_gym
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(136, 8, 8,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                  - entity: binary_sensor.dehumidifier_2
+                    name: Dehumidifier
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.dehumidifier_usage_2
+                        name: false
+                  - type: divider
+                  - type: custom:mini-media-player
+                    entity: media_player.living_room_speaker
+                    name: Gym Home Mini
+                    color: rgba(136, 8, 8,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons: null
+                  - type: custom:mini-media-player
+                    entity: media_player.spinning_tv
+                    color: rgba(136, 8, 8,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons: null
+                  - type: custom:mini-media-player
+                    entity: media_player.yoga_tv
+                    color: rgba(136, 8, 8,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons: null
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(136, 8, 8,.6);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(136, 8, 8,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:gap-card
+        height: 25
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Hallway
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(213, 181, 0,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-hallway/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_hallway
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(213, 181, 0,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_hallway
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(213, 181, 0,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(213, 181, 0,0);
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: climate.thermostat
+                      label: Thermostat
+                    padding: 0
+                    entities:
+                      - type: divider
+                        style:
+                          height: 10px
+                          background: rgba(213, 181, 0,0);
+                      - type: custom:simple-thermostat
+                        entity: climate.thermostat
+                        label:
+                          temperature: Hallway
+                          state: Mode
+                        sensors:
+                          - entity: sensor.temperature_inside
+                            name: Inside
+                        header:
+                          name: false
+                          icon: false
+                        control:
+                          hvac:
+                            _name: Test
+                        fallback: 'Off'
+                        layout:
+                          step: column
+                          mode:
+                            headings: false
+                        step_size: 1
+                        style: |
+                          ha-card {
+                            --st-font-size-xl: 1em;
+                            --st-font-size-m: 1em;
+                            --st-font-size-title: 1.25em;
+                            --st-font-size-sensors: 1em;
+                            --st-spacing: 0.1em;
+                            background: rgba(38,38,38,1);
+                            --st-mode-active-background: rgba(213, 181, 0,.3);
+                            --st-mode-active-color: rgba(255,255,255,1);
+                          }
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(213, 181, 0,0);
+                  - type: divider
+                  - entity: binary_sensor.motion_hallway_multi_sensor
+                    name: Motion
+                  - entity: sensor.illuminance_hallway_multi_sensor
+                    name: Brightness
+                  - entity: switch.hallway_light
+                  - entity: binary_sensor.closet_door
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(213, 181, 0,.6);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(213, 181, 0,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:gap-card
+        height: 25
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Kitchen
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(245, 66, 66,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-kitchen/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_kitchen
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(245, 66, 66,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_kitchen
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(245, 66, 66,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                  - entity: binary_sensor.motion_kitchen_pir_sensor
+                    name: Motion
+                  - entity: sensor.illuminance_kitchen_pir_sensor
+                    name: Brightness
+                  - entity: switch.kitchen_counter_illuminators
+                  - entity: switch.kitchen_fan_lights
+                  - entity: switch.kitchen_sink
+                  - type: divider
+                  - entity: binary_sensor.fridge_3
+                    name: Kitchen Fridge
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.fridge_3_usage
+                        name: false
+                  - entity: binary_sensor.oven_2
+                    name: Oven
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.oven_usage_2
+                        name: false
+                  - entity: binary_sensor.microwave
+                    name: Microwave
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.microwave_usage
+                        name: false
+                  - entity: binary_sensor.heat_8
+                    name: Air Fryer
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.heat_8_usage
+                        name: false
+                  - type: divider
+                  - type: custom:mini-media-player
+                    entity: media_player.kitchen_nest_mini
+                    color: rgba(245, 66, 66,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons:
+                        - name: My Mix 1
+                          type: script
+                          id: script.youtube_music_my_mix_1_kitchen
+                        - name: Big Mix 7
+                          type: script
+                          id: script.youtube_music_big_mix_7_kitchen
+                        - name: My Likes
+                          type: script
+                          id: script.youtube_music_likes_kitchen
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(245, 66, 66,.6);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(245, 66, 66,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:gap-card
+        height: 25
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Laundry
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(62, 186, 201,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-laundry/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_laundry
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(62, 186, 201,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_laundry
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(62, 186, 201,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(242,140,40,0);
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: sensor.washer
+                      type: custom:multiple-entity-row
+                      entities:
+                        - entity: sensor.washer_remaining_time
+                          name: false
+                      name: Washer
+                    padding: 0
+                    entities:
+                      - type: divider
+                        style:
+                          height: 0px
+                          background: rgba(242,140,40,0);
+                      - entity: sensor.washer_run_state
+                        name: Mode
+                      - entity: sensor.washer_pre_state
+                        name: Currently
+                      - entity: sensor.washer_water_temp
+                        name: Water Temperature
+                      - entity: sensor.washer_spin_speed
+                        name: Spin Speed
+                      - entity: sensor.washer_tub_clean_counter
+                        name: Tub Clean Counter
+                      - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: sensor.dryer
+                      type: custom:multiple-entity-row
+                      entities:
+                        - entity: sensor.dryer_remaining_time
+                          name: false
+                      name: Dryer
+                    padding: 0
+                    entities:
+                      - type: divider
+                        style:
+                          height: 0px
+                          background: rgba(242,140,40,0);
+                      - entity: sensor.dryer_run_state
+                        name: Mode
+                      - entity: sensor.dryer_pre_state
+                        name: Currently
+                      - entity: sensor.dryer_dry_level
+                        name: Dry Level
+                      - entity: sensor.dryer_temp_control
+                        name: Temperature
+                      - type: divider
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: binary_sensor.dishwasher_threshold
+                      type: custom:multiple-entity-row
+                      entities:
+                        - entity: sensor.dishwasher_current_consumption
+                          name: false
+                      name: Dishwasher
+                    padding: 0
+                    entities:
+                      - type: divider
+                        style:
+                          height: 0px
+                          background: rgba(242,140,40,0);
+                      - entity: sensor.dishwasher_current
+                        name: Current
+                      - entity: sensor.dishwasher_current_consumption
+                        name: Wattage
+                      - entity: sensor.dishwasher_voltage
+                        name: Voltage
+                      - entity: sensor.dishwasher_today_s_consumption
+                        name: Today's Consumption
+                      - entity: sensor.dishwasher_total_consumption
+                        name: Monthly Consumption
+                  - entity: binary_sensor.furnace
+                    icon: mdi:hvac
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.furnace_usage
+                        name: false
+                    name: Furnace
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(242,140,40,0);
+                  - type: divider
+                  - entity: binary_sensor.motion_laundry_pir_sensor
+                    name: Motion
+                  - entity: binary_sensor.laundry_door_04dac4fe_ias_zone
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: light.laundry_lights
+                    entities:
+                      - type: custom:slider-entity-row
+                        entity: light.laundry_1
+                      - type: custom:slider-entity-row
+                        entity: light.laundry_2
+                      - type: custom:slider-entity-row
+                        entity: light.laundry_3
+                  - entity: switch.furnace_light
+                  - entity: switch.laundry_light_bar
+                  - type: divider
+                  - entity: binary_sensor.basement_fridge
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.basement_fridge_usage
+                        name: false
+                  - type: divider
+                  - type: custom:mini-media-player
+                    entity: media_player.laundry_home_mini
+                    color: rgba(62, 186, 201,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons:
+                        - name: My Mix 1
+                          type: script
+                          id: script.youtube_music_my_mix_1_laundry
+                        - name: Big Mix 7
+                          type: script
+                          id: script.youtube_music_big_mix_7_laundry
+                        - name: My Likes
+                          type: script
+                          id: script.youtube_music_likes_laundry
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(62, 186, 201,.6);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(62, 186, 201,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:gap-card
+        height: 25
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Office
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - square: false
+                columns: 6
+                type: grid
+                cards:
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    color_type: blank-card
+                  - type: custom:button-card
+                    show_icon: true
+                    show_name: false
+                    icon: mdi:chevron-right
+                    size: 100%
+                    layout: vertical
+                    color_type: card
+                    color: rgba(0, 153, 255,.6);
+                    styles:
+                      card:
+                        - height: 40px
+                    tap_action:
+                      action: navigate
+                      navigation_path: /lovelace-office/
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+              - type: vertical-stack
+                cards:
+                  - square: false
+                    columns: 2
+                    type: grid
+                    cards:
+                      - type: custom:button-card
+                        entity: sensor.temperature_office
+                        show_icon: false
+                        show_name: true
+                        name: Temperature
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(0, 153, 255,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+                      - type: custom:button-card
+                        entity: sensor.humidity_office
+                        show_icon: false
+                        show_name: true
+                        name: Humidity
+                        show_state: true
+                        size: 100%
+                        layout: vertical
+                        color_type: card
+                        color: rgba(0, 153, 255,.6);
+                        styles:
+                          card:
+                            - height: 40px
+                        tap_action:
+                          action: more-info
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(242,140,40,0);
+                  - type: custom:fold-entity-row
+                    head:
+                      entity: climate.office_ac
+                      name: Air Conditioner
+                    padding: 0
+                    entities:
+                      - type: divider
+                        style:
+                          height: 10px
+                          background: rgba(242,140,40,0);
+                      - type: custom:simple-thermostat
+                        entity: climate.office_ac
+                        label:
+                          temperature: Office
+                          state: Mode
+                        sensors:
+                          - entity: sensor.temperature_inside
+                            name: Inside
+                        header:
+                          name: false
+                          icon: false
+                        layout:
+                          step: column
+                          mode:
+                            headings: false
+                        step_size: 1
+                        style: |
+                          ha-card {
+                            --st-font-size-xl: 1em;
+                            --st-font-size-m: 1em;
+                            --st-font-size-title: 1.25em;
+                            --st-font-size-sensors: 1em;
+                            --st-spacing: 0.1em;
+                            background: rgba(38,38,38,1);
+                            --st-mode-active-background: rgba(0, 153, 255,.3);
+                            --st-mode-active-color: rgba(255,255,255,1);
+                          }
+                  - type: divider
+                    style:
+                      height: 10px
+                      background: rgba(242,140,40,0);
+                  - type: divider
+                  - entity: binary_sensor.motion_office_pir_sensor
+                    name: Motion
+                  - entity: sensor.illuminance_office_pir_sensor
+                    name: Brightness
+                  - entity: light.lamp
+                  - entity: switch.lava_lamps
+                  - entity: switch.office_wax_warmer
+                  - type: divider
+                  - entity: switch.t_mobile
+                    toggle: false
+                    type: custom:multiple-entity-row
+                    icon: mdi:signal-cellular-3
+                  - entity: binary_sensor.justin_computer
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.justin_computer_usage
+                        name: false
+                  - entity: binary_sensor.mac_computer
+                    type: custom:multiple-entity-row
+                    entities:
+                      - entity: sensor.mac_computer_usage
+                        name: false
+                  - type: divider
+                  - type: custom:mini-media-player
+                    entity: media_player.office_home
+                    color: rgba(0, 153, 255,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons:
+                        - name: My Mix 1
+                          type: script
+                          id: script.youtube_music_my_mix_1_office
+                        - name: Big Mix 7
+                          type: script
+                          id: script.youtube_music_big_mix_7_office
+                        - name: My Likes
+                          type: script
+                          id: script.youtube_music_likes_office
+                  - type: custom:mini-media-player
+                    entity: media_player.office_soundbar
+                    color: rgba(0, 153, 255,.6);
+                    volume_stateless: true
+                    group: true
+                    artwork: material
+                    toggle_power: false
+                    shortcuts:
+                      columns: 3
+                      buttons:
+                        - name: My Mix 1
+                          type: script
+                          id: script.youtube_music_my_mix_1_office_soundbar
+                        - name: Big Mix 7
+                          type: script
+                          id: script.youtube_music_big_mix_7_office_soundbar
+                        - name: My Likes
+                          type: script
+                          id: script.youtube_music_likes_office_soundbar
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(0, 153, 255,.6);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(0, 153, 255,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Music Control
+            alignment: center
+          - type: vertical-stack
+            cards:
+              - type: entities
+                state_color: false
+                entities:
+                  - type: custom:paper-buttons-row
+                    base_config:
+                      state_styles:
+                        'off':
+                          button:
+                            background: rgba(120, 120, 300,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                        'on':
+                          button:
+                            background: rgba(120, 120, 420,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                    buttons:
+                      - entity: script.youtube_music_skip_previous
+                        name: false
+                      - entity: script.youtube_music_play
+                        name: false
+                      - entity: script.youtube_music_pause
+                        name: false
+                      - entity: script.youtube_music_skip_next
+                        name: false
+                      - entity: script.youtube_music_stop
+                        name: false
+                  - type: custom:paper-buttons-row
+                    base_config:
+                      state_styles:
+                        'off':
+                          button:
+                            background: rgba(120, 120, 300,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                        'on':
+                          button:
+                            background: rgba(120, 120, 420,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                    buttons:
+                      - entity: script.youtube_music_volume_increase
+                        name: false
+                      - entity: script.youtube_music_volume_decrease
+                        name: false
+                  - type: custom:text-divider-row
+                    text: My Mix 1
+                    align: left
+                    style: |
+                      h2:before, h2:after {
+                        position: absolute;
+                        top: 51%;
+                        overflow: hidden;
+                        width: 100%;
+                        height: var(--line-size);
+                        content: '\a0';
+                        background-color: var(--divider-color);
+                      }
+                      h2:before {
+                        margin-left: -100%;
+                        text-align: right;
+                      }
+                      h2.text-divider {
+                        border-bottom: none;
+                      }
+                      h2.text-divider span {
+                        background: none;
+                      }
+                  - type: custom:paper-buttons-row
+                    base_config:
+                      state_styles:
+                        'off':
+                          button:
+                            background: rgba(120, 120, 300,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                        'on':
+                          button:
+                            background: rgba(120, 120, 420,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                    buttons:
+                      - entity: script.youtube_music_my_mix_1_bathroom
+                        name: Bathroom
+                        icon: false
+                      - entity: script.youtube_music_my_mix_1_kitchen
+                        name: Kitchen
+                        icon: false
+                      - entity: script.youtube_music_my_mix_1_office
+                        name: Office
+                        icon: false
+                  - type: custom:paper-buttons-row
+                    base_config:
+                      state_styles:
+                        'off':
+                          button:
+                            background: rgba(120, 120, 300,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                        'on':
+                          button:
+                            background: rgba(120, 120, 420,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                    buttons:
+                      - entity: script.youtube_music_my_mix_1_downstairs
+                        name: Downstairs
+                        icon: false
+                      - entity: script.youtube_music_my_mix_1_home_group
+                        name: Home Group
+                        icon: false
+                  - type: custom:text-divider-row
+                    text: Big Mix 7
+                    align: left
+                    style: |
+                      h2:before, h2:after {
+                        position: absolute;
+                        top: 51%;
+                        overflow: hidden;
+                        width: 100%;
+                        height: var(--line-size);
+                        content: '\a0';
+                        background-color: var(--divider-color);
+                      }
+                      h2:before {
+                        margin-left: -100%;
+                        text-align: right;
+                      }
+                      h2.text-divider {
+                        border-bottom: none;
+                      }
+                      h2.text-divider span {
+                        background: none;
+                      }
+                  - type: custom:paper-buttons-row
+                    base_config:
+                      state_styles:
+                        'off':
+                          button:
+                            background: rgba(120, 120, 300,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                        'on':
+                          button:
+                            background: rgba(120, 120, 420,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                    buttons:
+                      - entity: script.youtube_music_big_mix_7_bathroom
+                        name: Bathroom
+                        icon: false
+                      - entity: script.youtube_music_big_mix_7_kitchen
+                        name: Kitchen
+                        icon: false
+                      - entity: script.youtube_music_big_mix_7_office
+                        name: Office
+                        icon: false
+                  - type: custom:text-divider-row
+                    text: My Likes
+                    align: left
+                    style: |
+                      h2:before, h2:after {
+                        position: absolute;
+                        top: 51%;
+                        overflow: hidden;
+                        width: 100%;
+                        height: var(--line-size);
+                        content: '\a0';
+                        background-color: var(--divider-color);
+                      }
+                      h2:before {
+                        margin-left: -100%;
+                        text-align: right;
+                      }
+                      h2.text-divider {
+                        border-bottom: none;
+                      }
+                      h2.text-divider span {
+                        background: none;
+                      }
+                  - type: custom:paper-buttons-row
+                    base_config:
+                      state_styles:
+                        'off':
+                          button:
+                            background: rgba(120, 120, 300,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                        'on':
+                          button:
+                            background: rgba(120, 120, 420,.3);
+                            border-radius: 5px;
+                          name:
+                            color: white;
+                    buttons:
+                      - entity: script.youtube_music_likes_bathroom
+                        name: Bathroom
+                        icon: false
+                      - entity: script.youtube_music_likes_kitchen
+                        name: Kitchen
+                        icon: false
+                      - entity: script.youtube_music_likes_office
+                        name: Office
+                        icon: false
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: rgba(120, 120, 420,0);
+                      box-shadow: none;
+                      color: white;
+                      --card-mod-icon-color: white;
+                    }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(120, 120, 420,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
+      - type: custom:stack-in-card
+        cards:
+          - type: custom:mushroom-title-card
+            title: Room Selection
+            alignment: center
+          - type: entities
+            entities:
+              - input_select.room_selection
+            show_header_toggle: false
+            state_color: false
+            card_mod:
+              style: |
+                ha-card {
+                  background: rgba(120, 120, 420,0);
+                  box-shadow: none;
+                  color: white;
+                  --card-mod-icon-color: white;
+                }
+        card_mod:
+          style: |
+            ha-card {
+              background: rgba(120, 120, 420,.3);
+              box-shadow: none;
+              color: white;
+              --card-mod-icon-color: white;
+            }
