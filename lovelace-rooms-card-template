@@ -3,8 +3,10 @@ type: custom:stack-in-card
    - type: custom:stack-in-card 
      cards: 
        - type: custom:mushroom-title-card 
-# Room name
+       
+         ## Room name
          title:
+         
          alignment: center 
      card_mod: 
        style: | 
@@ -20,8 +22,7 @@ type: custom:stack-in-card
          entities: 
            - type: custom:paper-buttons-row 
              styles: 
-               '--paper-item-icon-color': white 
-               '--paper-item-icon-active-color': yellow 
+               '--paper-item-icon-color': white
              buttons: 
                - entity: sensor.temperature_backroom 
                  name: false 
