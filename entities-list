@@ -1,14 +1,20 @@
 
+      - entity: binary_sensor.air_fryer
+        name: Air Fryer
       - entity: binary_sensor.backdoor_inside
         name: Backdoor - Inside
       - entity: binary_sensor.backdoor_outside
         name: Backdoor - Outside
-      - entity: binary_sensor.motion_backroom_pir_sensor
-        name: Backroom PIR
       - entity: light.backroom_light_1
         name: Backroom Light 1
       - entity: light.backroom_light_2
         name: Backroom Light 2
+      - entity: binary_sensor.motion_backroom_pir_sensor
+        name: Backroom PIR
+      - entity: switch.bathroom_lights
+        name: Backroom Lights
+      - entity: binary_sensor.motion_bathroom_pir_sensor
+        name: Backroom PIR
       - entity: switch.bedroom_ac
         name: Bedroom AC
       - entity: light.bedroom_light
@@ -19,12 +25,14 @@
         name: Closet Light
       - entity: light.deck_light
         name: Deck Light
+      - entity: binary_sensor.dishwasher_threshold
+        name: Dishwasher
+      - entity: switch.duct_fan
+        name: Duct Fan
       - entity: switch.dining_room_light
         name: Foreroom Fan Lights
       - entity: switch.dining_room_table
         name: Foreroom Lightbar
-      - entity: switch.duct_fan
-        name: Duct Fan
       - entity: binary_sensor.motion_foreroom_left_pir_sensor
         name: Foreroom Left PIR
       - entity: binary_sensor.motion_foreroom_right_pir_sensor
@@ -37,7 +45,7 @@
         name: Foreroom Light
       - entity: switch.furnace_light
         name: Furnace Light
-      - entity: binary_sensor.bathroom_hair_curler
+      - entity: binary_sensor.hair_curler
         name: Hair Curler
       - entity: binary_sensor.motion_hallway_multi_sensor
         name: Hallway Multisensor
@@ -71,13 +79,15 @@
         name: Litter Box
       - entity: switch.magic_litter_box
         name: Magic Litter Box
+      - entity: binary_sensor.microwave
+        name: Microwave
       - entity: switch.noise_maker
         name: Noise Maker
       - entity: binary_sensor.motion_office_pir_sensor
         name: Office PIR
       - entity: weather.openweathermap
         name: OpenWeatherMap
-      - entity: binary_sensor.oven_2
+      - entity: binary_sensor.oven
         name: Oven
       - entity: light.porch_light
         name: Porch
