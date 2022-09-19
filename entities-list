@@ -1,0 +1,89 @@
+
+      - entity: binary_sensor.backdoor_inside
+        name: Backdoor - Inside
+      - entity: binary_sensor.backdoor_outside
+        name: Backdoor - Outside
+      - entity: binary_sensor.motion_backroom_pir_sensor
+        name: Backroom PIR
+      - entity: light.backroom_light_1
+        name: Backroom Light 1
+      - entity: light.backroom_light_2
+        name: Backroom Light 2
+      - entity: switch.bedroom_ac
+        name: Bedroom AC
+      - entity: light.bedroom_light
+        name: Bedroom Light
+      - entity: binary_sensor.cat_food
+        name: Cat Food
+      - entity: switch.closet_light
+        name: Closet Light
+      - entity: light.deck_light
+        name: Deck Light
+      - entity: switch.dining_room_light
+        name: Foreroom Fan Lights
+      - entity: switch.dining_room_table
+        name: Foreroom Lightbar
+      - entity: switch.duct_fan
+        name: Duct Fan
+      - entity: binary_sensor.motion_foreroom_left_pir_sensor
+        name: Foreroom Left PIR
+      - entity: binary_sensor.motion_foreroom_right_pir_sensor
+        name: Foreroom Right PIR
+      - entity: lock.front_door
+        name: Front Door
+      - entity: lock.front_door_bluetooth
+        name: Front Door Bluetooth
+      - entity: switch.front_room_light
+        name: Foreroom Light
+      - entity: switch.furnace_light
+        name: Furnace Light
+      - entity: binary_sensor.bathroom_hair_curler
+        name: Hair Curler
+      - entity: binary_sensor.motion_hallway_multi_sensor
+        name: Hallway Multisensor
+      - entity: switch.hallway_light
+        name: Hallway Light
+      - entity: binary_sensor.motion_kitchen_pir_sensor
+        name: Kitchen PIR
+      - entity: switch.kitchen_counter_illuminators
+        name: Kitchen Counter Illuminators
+      - entity: switch.kitchen_lights
+        name: Kitchen Fan Lights
+      - entity: switch.kitchen_sink
+        name: Kitchen Sink
+      - entity: light.lamp
+        name: Lamp
+      - entity: light.led_strip
+        name: LED Strip
+      - entity: binary_sensor.motion_laundry_pir_sensor
+        name: Laundry PIR
+      - entity: light.laundry_1
+        name: Laundry 1
+      - entity: light.laundry_2
+        name: Laundry 2
+      - entity: light.laundry_3
+        name: Laundry 3
+      - entity: binary_sensor.laundry_door
+        name: Laundry Door
+      - entity: switch.laundry_light_bar
+        name: Laundry Light Bar
+      - entity: switch.litter_box
+        name: Litter Box
+      - entity: switch.magic_litter_box
+        name: Magic Litter Box
+      - entity: switch.noise_maker
+        name: Noise Maker
+      - entity: binary_sensor.motion_office_pir_sensor
+        name: Office PIR
+      - entity: weather.openweathermap
+        name: OpenWeatherMap
+      - entity: binary_sensor.oven_2
+        name: Oven
+      - entity: light.porch_light
+        name: Porch
+      - entity: binary_sensor.motion_porch_pir_sensor
+        name: Porch PIR
+      - entity: light.side_door
+        name: Side Door
+      - entity: switch.bathroom_space_heater
+        name: Space Heater
