@@ -13,7 +13,7 @@ blueprint:
   source_url: https://github.com/justinmyersm/Home-Assistant
 variables:
   colors: |-
-    {{ [[0.2852,0.1086], [0.5921,0.3830], [0.675,0.322], [0.2235,0.1502]] }}
+    {{ [[0.2485,0.0917], [0.5921,0.3830], [0.2485,0.0917], [0.675,0.322]] }}
 trigger:
 - platform: time_pattern
   hours: '*'
@@ -22,7 +22,7 @@ trigger:
 action:
 - service: light.turn_on
   data_template:
-    xy_color: '{{ colors[(now().second/2.5)|round(0)] }}'
-    transition: 1
+    xy_color: '{{ colors[(now().second/15)|round(0)] }}'
+    transition: 2
   target: !input cl_light
 mode: single
