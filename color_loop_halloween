@@ -1,0 +1,28 @@
+blueprint:
+  name: Color Loop - Halloween
+  description: ''
+  domain: automation
+  input:
+    cl_light:
+      name: 'Color Loop - Halloween'
+      description: 'Choose Light entity to Color Loop'
+      selector:
+        target:
+          entity:
+            domain: light
+  source_url: https://github.com/justinmyersm/Home-Assistant
+variables:
+  colors: |-
+    {{ [[0.2852,0.1086], [0.5921,0.3830], [0.675,0.322], [0.2235,0.1502]] }}
+trigger:
+- platform: time_pattern
+  hours: '*'
+  minutes: '*'
+  seconds: /1
+action:
+- service: light.turn_on
+  data_template:
+    xy_color: '{{ colors[(now().second/2.5)|round(0)] }}'
+    transition: 1
+  target: !input cl_light
+mode: single
