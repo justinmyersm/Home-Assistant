@@ -1,0 +1,840 @@
+views:
+  - theme: Backend-selected
+    title: Settings
+    type: custom:vertical-layout
+    badges: []
+    cards:
+      - type: custom:mushroom-title-card
+        title: Settings
+        alignment: center
+        subtitle: ''
+      - square: false
+        columns: 8
+        type: grid
+        cards:
+          - type: custom:button-card
+            icon: mdi:home-assistant
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-home/
+          - type: custom:button-card
+            icon: phu:rooms-other
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-rooms/
+          - type: custom:button-card
+            icon: mdi:home-thermometer
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-climate/
+          - type: custom:button-card
+            icon: mdi:paw
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-pets/
+          - type: custom:button-card
+            icon: phu:wyzecam
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-cctv/
+          - type: custom:button-card
+            icon: mdi:devices
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-devices/
+          - type: custom:button-card
+            icon: mdi:sprout
+            color_type: card
+            color: '#262626'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-plants/
+          - type: custom:button-card
+            icon: mdi:cog
+            color_type: card
+            color: '#0099ff'
+            size: 30px
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace-settings/
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: At a Glance
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                name: Restart
+                show_name: true
+                icon: mdi:restart
+                color_type: card
+                color: '#880808'
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/yaml
+              - type: custom:button-card
+                name: configuration.yaml
+                show_name: true
+                icon: mdi:file
+                color_type: card
+                color: '#262626'
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/ingress/core_configurator
+              - type: conditional
+                conditions:
+                  - entity: update.home_assistant_core_update
+                    state: 'off'
+                  - entity: update.home_assistant_supervisor_update
+                    state: 'off'
+                  - entity: update.home_assistant_operating_system_update
+                    state: 'off'
+                  - entity: update.docker_wyze_bridge_update
+                    state: 'off'
+                  - entity: update.home_assistant_google_drive_backup_update
+                    state: 'off'
+                  - entity: update.let_s_encrypt_update
+                    state: 'off'
+                  - entity: update.node_red_update
+                    state: 'off'
+                  - entity: sensor.hacs
+                    state: '0'
+                card:
+                  type: custom:button-card
+                  name: Up-to-Date
+                  show_name: true
+                  icon: mdi:check
+                  color_type: card
+                  color: green
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: navigate
+                    navigation_path: /config/updates
+              - type: conditional
+                conditions:
+                  - entity: update.home_assistant_core_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.home_assistant_core_update
+                  name: Core Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.home_assistant_supervisor_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.home_assistant_supervisor_update
+                  name: Supervisor Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.home_assistant_operating_system_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.home_assistant_operating_system_update
+                  name: OS Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.docker_wyze_bridge_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.docker_wyze_bridge_update
+                  name: Wyze Docker Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.home_assistant_google_drive_backup_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.home_assistant_google_drive_backup_update
+                  name: Google Drive Backup Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.grafana_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.grafana_update
+                  name: Grafana Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.samba_share_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.samba_share_update
+                  name: Samba Share Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.sqlite_web_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.sqlite_web_update
+                  name: SQLite Web Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.ssh_web_terminal_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.ssh_web_terminal_update
+                  name: Terminal Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: update.mosquitto_broker_update
+                    state: 'on'
+                card:
+                  type: custom:button-card
+                  entity: update.mosquitto_broker_update
+                  name: Mosquitto Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: more-info
+              - type: conditional
+                conditions:
+                  - entity: sensor.hacs
+                    state_not: '0'
+                card:
+                  type: custom:button-card
+                  entity: sensor.hacs
+                  name: HACS Update
+                  show_name: true
+                  icon: mdi:update
+                  color: red
+                  size: 30px
+                  layout: icon_name
+                  tap_action:
+                    action: navigate
+                    navigation_path: /hacs/entry
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: System Information
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: sensor.processor_use
+                show_name: false
+                show_state: true
+                icon: mdi:cpu-64-bit
+                size: 30px
+                layout: icon_state
+                tap_action:
+                  action: more-info
+                state:
+                  - value: 65
+                    operator: <=
+                    color: green
+                  - value: 90
+                    operator: <
+                    color: '#D5B500'
+                  - value: 90
+                    operator: '>='
+                    color: red
+              - type: custom:button-card
+                entity: sensor.disk_use_percent_config
+                show_name: false
+                show_state: true
+                icon: mdi:harddisk
+                size: 30px
+                layout: icon_state
+                tap_action:
+                  action: more-info
+                state:
+                  - value: 50
+                    operator: <=
+                    color: green
+                  - value: 90
+                    operator: <
+                    color: '#D5B500'
+                  - value: 90
+                    operator: '>='
+                    color: red
+              - type: custom:button-card
+                entity: sensor.memory_free
+                show_name: false
+                show_state: true
+                icon: mdi:memory
+                size: 30px
+                layout: icon_state
+                tap_action:
+                  action: more-info
+                state:
+                  - value: 1000
+                    operator: <=
+                    color: red
+                  - value: 2000
+                    operator: <
+                    color: '#D5B500'
+                  - value: 2000
+                    operator: '>='
+                    color: green
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Network Information
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                entity: sensor.fast_com_download
+                show_name: true
+                name: Fast.com
+                show_state: true
+                icon: mdi:download
+                units: Mbps
+                size: 30px
+                layout: icon_name_state2nd
+                tap_action:
+                  action: navigate
+                  navigation_path: /lovelace-networking/
+                state:
+                  - value: 30
+                    operator: <=
+                    color: red
+                    icon: mdi:download
+                  - value: 70
+                    operator: <
+                    color: '#D5B500'
+                    icon: mdi:download
+                  - value: 70
+                    operator: '>='
+                    color: green
+                    icon: mdi:download
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Devices & Integrations
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:devices
+                name: Devices
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/devices/dashboard
+              - type: custom:button-card
+                icon: mdi:dots-triangle
+                name: Entities
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/entities
+              - type: custom:button-card
+                icon: mdi:tools
+                name: Helpers
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/helpers
+              - type: custom:button-card
+                icon: mdi:puzzle
+                name: Integrations
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/integrations
+              - type: custom:button-card
+                icon: mdi:nfc-variant
+                name: Tags
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/tags
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Automations & Scenes
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:sofa
+                name: Areas
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/areas/dashboard
+              - type: custom:button-card
+                icon: mdi:robot-happy
+                name: Automations
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/automation/dashboard
+              - type: custom:button-card
+                icon: mdi:palette-swatch
+                name: Blueprints
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/blueprint/dashboard
+              - type: custom:button-card
+                icon: mdi:view-dashboard
+                name: Dashboards
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/lovelace/dashboards
+              - type: custom:button-card
+                icon: mdi:palette
+                name: Scenes
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/scene/dashboard
+              - type: custom:button-card
+                icon: mdi:script-text
+                name: Scripts
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/script/dashboard
+              - type: custom:button-card
+                icon: mdi:map-marker-radius
+                name: Zones
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/zone
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Add-ons
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:puzzle
+                name: Add-ons
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/dashboard
+              - type: custom:button-card
+                icon: mdi:calendar
+                name: Calendar
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /calendar
+              - type: custom:button-card
+                icon: phu:wyzecam
+                name: Docker Wyze Bridge
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/7094bb28_docker-wyze-bridge/info
+              - type: custom:button-card
+                icon: mdi:wrench
+                name: File Editor
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/core_configurator/info
+              - type: custom:button-card
+                icon: mdi:google-drive
+                name: Google Drive Backup
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/cebe7a76_hassio_google_drive_backup/info
+              - type: custom:button-card
+                icon: mdi:chart-areaspline
+                name: Grafana
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/a0d7b954_grafana/info
+              - type: custom:button-card
+                icon: mdi:store
+                name: HACS
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hacs/entry
+              - type: custom:button-card
+                icon: mdi:router-wireless
+                name: Mosquitto
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/core_mosquitto/info
+              - type: custom:button-card
+                icon: mdi:music
+                name: Music
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /media-browser/media_player.youtube_music
+              - type: custom:button-card
+                icon: mdi:microsoft-windows-classic
+                name: Samba Share
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/core_samba/info
+              - type: custom:button-card
+                icon: mdi:cart
+                name: Shopping List
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /shopping-list
+              - type: custom:button-card
+                icon: mdi:database
+                name: SQLite Web
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/a0d7b954_sqlite-web/info
+              - type: custom:button-card
+                icon: mdi:console
+                name: Terminal
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/addon/core_ssh/info
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Developer Tools
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:calendar-text
+                name: Events
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/event
+              - type: custom:button-card
+                icon: mdi:gesture-tap-button
+                name: Services
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/service
+              - type: custom:button-card
+                icon: mdi:state-machine
+                name: States
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/state
+              - type: custom:button-card
+                icon: mdi:list-status
+                name: Statistics
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/statistics
+              - type: custom:button-card
+                icon: mdi:pencil-ruler
+                name: Templates
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/template
+              - type: custom:button-card
+                icon: mdi:xml
+                name: YAML
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /developer-tools/yaml
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Settings & System
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                icon: mdi:google-analytics
+                name: Analytics
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/analytics
+              - type: custom:button-card
+                icon: mdi:backup-restore
+                name: Backups
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /hassio/backups
+              - type: custom:button-card
+                icon: mdi:cloud-lock
+                name: Cloud
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/cloud/account
+              - type: custom:button-card
+                icon: mdi:cog
+                name: General
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/general
+              - type: custom:button-card
+                icon: mdi:memory
+                name: Hardware
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/hardware
+              - type: custom:button-card
+                icon: mdi:math-log
+                name: Logs
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/logs
+              - type: custom:button-card
+                icon: mdi:network
+                name: Network
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/network
+              - type: custom:button-card
+                icon: mdi:screwdriver
+                name: Repairs
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/repairs
+              - type: custom:button-card
+                icon: mdi:database
+                name: Storage
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/storage
+              - type: custom:button-card
+                icon: mdi:account
+                name: People
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/person
+              - type: custom:button-card
+                icon: mdi:account
+                name: Profile
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /profile
+              - type: custom:button-card
+                icon: mdi:home-assistant
+                name: System
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/system
+              - type: custom:button-card
+                icon: mdi:update
+                name: Updates
+                size: 30px
+                layout: icon_name
+                tap_action:
+                  action: navigate
+                  navigation_path: /config/updates
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Danger Zone
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                name: Reboot Host
+                show_name: true
+                color_type: card
+                color: '#880808'
+                icon: mdi:restart
+                size: 30px
+                layout: icon_name
+                confirmation:
+                  text: '[[[ return `Reboot Home Assistant Host` ]]]'
+                  exemptions: null
+                tap_action:
+                  action: call-service
+                  service: hassio.host_reboot
+      - type: vertical-stack
+        cards:
+          - type: custom:mushroom-title-card
+            title: ''
+            subtitle: Applications
+          - square: false
+            columns: 2
+            type: grid
+            cards:
+              - type: custom:button-card
+                name: UniFi Network
+                icon: phu:ubiquiti
+                tap_action:
+                  action: url
+                  url_path: app://com.ubnt.easyunifi
